@@ -1136,13 +1136,7 @@
 			return undefined;
 		},
 		setFocus: function (fieldNm) {
-			let component = this.getComponentByName(fieldNm);
-			let classList = component.className.split(' ');
-			let tmp = "";
-			for (let i = 0; i < classList.length; i++) {
-				tmp += classList[i] + " ";
-			}
-			alert(tmp);
+			this.getComponentByName(fieldNm).focus();
 		},
 		_getComponentById: function (c) {
 			var b = this.host.find("#el_" + c);
