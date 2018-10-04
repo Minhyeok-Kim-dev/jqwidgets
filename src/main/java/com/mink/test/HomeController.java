@@ -30,4 +30,9 @@ public class HomeController {
 	public String tab() {
 		return "tab/tab";
 	}
+	
+	@RequestMapping(value = "/dockingLayout", method = RequestMethod.GET)
+	public String dockingLayout() {
+		return "dockingLayout/dockingLayout";
+	}
 }
