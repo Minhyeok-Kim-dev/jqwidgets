@@ -18,7 +18,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		return "form/test_form";
+		return "main";
 	}
 	
 	@RequestMapping(value = "/old", method = RequestMethod.GET)
@@ -34,5 +34,10 @@ public class HomeController {
 	@RequestMapping(value = "/dockingLayout", method = RequestMethod.GET)
 	public String dockingLayout() {
 		return "dockingLayout/dockingLayout";
+	}
+	
+	@RequestMapping(value = "/navigationBar", method = RequestMethod.GET)
+	public String navigationBar() {
+		return "navigationBar";
 	}
 }
