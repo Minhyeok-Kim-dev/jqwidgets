@@ -25,4 +25,9 @@ public class HomeController {
 	public String old(Locale locale, Model model) {
 		return "sample_form_old";
 	}
+	
+	@RequestMapping(value = "/tab", method = RequestMethod.GET)
+	public String tab() {
+		return "tab/tab";
+	}
 }
