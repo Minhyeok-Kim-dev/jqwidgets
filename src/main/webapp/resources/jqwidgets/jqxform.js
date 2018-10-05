@@ -952,11 +952,26 @@
 			} else {
 				let width = isNaN(parseFloat(obj.width)) ? "auto" : obj.width;
 				let height = isNaN(parseFloat(obj.height)) ? "30px" : obj.height;
+				let placeHolder = typeof obj.placeHolder === "undefined" ? "" : obj.placeHolder;
+				let disabled = obj.disabled;
+				let source = typeof obj.source === "undefined" ? [] : obj.source;
+				let minLength = isNaN(parseInt(obj.minLength)) ? 1 : obj.minLength;
+				let dropDownWidth = isNaN(parseFloat(obj.dropDownWidth)) ? null : obj.dropDownWidth;
 				
+				let displayMember = typeof obj.displayMember === "undefined" ? "" : obj.displayMember;
+				let valueMember = typeof obj.valueMember === "undefined" ? "" : obj.valueMember;
+
 				elem.jqxInput({
 					"theme" : _this.theme,
 					"width" : width,
-					"height" : height
+					"height" : height,
+					"placeHolder" : placeHolder,
+					"disabled" : disabled,
+					"source" : source,
+					"minLength" : minLength,
+					"dropDownWidth" : dropDownWidth,
+					"displayMember" : displayMember,
+					"valueMember" : valueMember
 				});
 			}
 			

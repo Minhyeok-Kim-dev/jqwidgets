@@ -12,21 +12,19 @@
 
 <script>
 	$(document).ready(function(){
-	    /* 2. form template 선언 */
 		let template = [{
-			"bind" : "txtName",		// template에 바인딩 되는 변수명 (jqxform 내 element 식별에 사용)
-			"name" : "txtName",		// getComponentByName()로 element 가져올 때 사용되는 변수명) 
-			"type" : "text",		// input type
-			"width" : "250px",		// 너비
-			"height" : "25px"		// 높이
+			"bind" : "txtName",
+			"name" : "txtName",
+			"type" : "text",			
+			"label" : "이름",			// label명 설정
+			"labelWidth" : "100px",		// label너비 설정
+			"labelPosition" : "left"	// label위치 설정
 		}];
 		
-	    /* 3. div에 바인딩  */
 		$("#jqxinputForm").jqxForm({
 	   		"template" : template
 		});
 	});
 </script>
 
-<!-- 1. form div 선언 -->
 <div id="jqxinputForm"></div>

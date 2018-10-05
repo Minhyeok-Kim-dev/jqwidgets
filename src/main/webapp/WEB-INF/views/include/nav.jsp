@@ -8,6 +8,24 @@
 		   "expandMode" : "toggle"
 		});    
 		
+		$("#jqxNavigationBar").on("expandedItem", function(event) {
+		   $.ajax(getContextPath() + "/reference/", {
+				type : "post",
+				dataType : "html",
+				data : {
+				    "type" : event.args.item
+				},
+				async : false
+			})
+			.done(function(data) { // success 시
+				// API reference 페이지 출력
+			    $("#apiReference").html(data);
+			})
+			.fail(function(data) {
+				alert("loadLogs failed");
+			});
+		});
+		
 		$("#jqxNavigationBar a").on("click", function(event){
 		   event.preventDefault();
 		   

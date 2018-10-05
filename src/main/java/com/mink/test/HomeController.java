@@ -6,20 +6,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
+@RequestMapping(value="/")
 public class HomeController {
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		return "main";
 	}
+	
+	@RequestMapping(value = "/reference", method = RequestMethod.POST)
+	public String reference(@RequestParam(name="type") String type) {
+		String page = "/reference/";
+		
+		switch(Integer.parseInt(type)) {
+		case 0:
+			page += "jqxinput";
+			break;
+		}
+		
+		return page;
+	}
+	
 	
 	@RequestMapping(value = "/old", method = RequestMethod.GET)
 	public String old(Locale locale, Model model) {

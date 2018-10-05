@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value="/widgets")
 public class WidgetsController {
+	@RequestMapping(value = "/jqxinput", method = RequestMethod.POST)
+	public String jqxinput() {
+		return "/reference/jqxinput";
+	}
+	
 	@RequestMapping(value = "/jqxinput_default", method = RequestMethod.POST)
 	public String jqxinput_default() {
 		return "/widgets/jqxinput/jqxinput_default";
