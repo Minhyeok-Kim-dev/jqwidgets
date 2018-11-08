@@ -10,6 +10,7 @@ License: https://jqwidgets.com/license/
 	a.extend(a.jqx._jqxInput.prototype, {
 		defineInstance: function () {
 			var c = this;
+			
 			var b = {
 				disabled: false,
 				filter: c._filter,
@@ -31,7 +32,7 @@ License: https://jqwidgets.com/license/
 				displayMember: "",
 				valueMember: "",
 				events: ["select", "open", "close", "change"],
-				popupZIndex: 1000,
+				popupZIndex: 20000,
 				items: 8,
 				minLength: 1,
 				maxLength: null
@@ -510,6 +511,7 @@ License: https://jqwidgets.com/license/
 			var e = this._find("jqx-fill-state-pressed", this._popupHelper);
 			var g = e.getAttribute("data-value");
 			var c = e.getAttribute("data-name");
+			
 			this.input.value = this.renderer(c, this.input.value);
 			this.selectedItem = {
 				label: c,

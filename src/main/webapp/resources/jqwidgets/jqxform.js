@@ -950,6 +950,7 @@
 			if (obj.init) {
 			    obj.init(elem);
 			} else {
+			    
 				let width = isNaN(parseFloat(obj.width)) ? "auto" : obj.width;
 				let height = isNaN(parseFloat(obj.height)) ? "30px" : obj.height;
 				let placeHolder = typeof obj.placeHolder === "undefined" ? "" : obj.placeHolder;
@@ -957,10 +958,17 @@
 				let source = typeof obj.source === "undefined" ? [] : obj.source;
 				let minLength = isNaN(parseInt(obj.minLength)) ? 1 : obj.minLength;
 				let dropDownWidth = isNaN(parseFloat(obj.dropDownWidth)) ? null : obj.dropDownWidth;
-				
 				let displayMember = typeof obj.displayMember === "undefined" ? "" : obj.displayMember;
 				let valueMember = typeof obj.valueMember === "undefined" ? "" : obj.valueMember;
-
+				let items = typeof obj.items === "undefiend" ? 8 : obj.items;
+				let maxLength = typeof obj.maxLength === "undefined" ? null : obj.maxLength;
+				let opened = typeof obj.opened === "undefined" ? false : obj.opened;
+				let popupZIndex = typeof obj.popupZIndex === "undefined" ? 2000 : obj.popupZIndex;
+				let renderer = typeof obj.renderer === "undefined" ? b => {return b} : obj.renderer; // this._renderer 미호출된다?
+				let rtl = typeof obj.rtl === "undefined" ? false : obj.rtl;
+				
+				
+				// properties
 				elem.jqxInput({
 					"theme" : _this.theme,
 					"width" : width,
@@ -971,13 +979,21 @@
 					"minLength" : minLength,
 					"dropDownWidth" : dropDownWidth,
 					"displayMember" : displayMember,
-					"valueMember" : valueMember
+					"valueMember" : valueMember,
+					"items" : items,
+					"maxLength" : maxLength,
+					"opened" : opened,
+					"popupZIndex" : popupZIndex,
+					"renderer" : renderer,
+					"rtl" : rtl,
+					"events": ["select", "open", "close", "change"],
 				});
 			}
 			
 			elem.on("change", function (event) {
 			    _this._onChangeHandler(event);
 			});
+			
 		},
 		_initLabelTool: function (seq) {
 			let _this = this;
