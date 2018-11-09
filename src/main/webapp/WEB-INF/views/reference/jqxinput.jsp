@@ -645,25 +645,29 @@
 						<h4>Code Example</h4>
 <pre><code>
 /* Set Property */
-// case 1 : 초기화 시점에 property 설정
-let template = [{
-  "type" : "text",	
-  "disabled" : true	// property 설정
+let template_disabled = [{
+   	"bind" : "txtDisabled",
+    "name" : "txtDisabled",
+	"type" : "text",	
+	"width" : "250px",	
+	"height" : "25px",	
+	"placeHolder" : "disabled",
+	"disabled" : true
 }];
 
-$("#jqxinputForm").jqxForm({
-  "template" : template
+$("#jqxinputForm_disabled").jqxForm({
+  	"template" : template_disabled
 });
 
 // case 2 : element에 property 설정
-let txtField = $("#jqxinputForm").jqxForm("getComponentByName", "txtField");
-txtField.jqxInput("disabled", true);
+let txtDisabled = $("#jqxinputForm").jqxForm("getComponentByName", "txtDisabled");
+txtDisabled.jqxInput("disabled", true);
 
 
 /* Get Property */
 
-let txtField = $("#jqxinputForm").jqxForm("getComponentByName", "txtField");
-let disabled = txtField.jqxInput("disabled"); 
+let txtDisabled = $("#jqxinputForm").jqxForm("getComponentByName", "txtDisabled");
+let disabled = txtDisabled.jqxInput("disabled"); 
 </code></pre>
 						
                     </div>
@@ -832,7 +836,7 @@ txtDisplayMember.on("select", function(event) {
 						<div id="jqxinputForm_height"></div>
 						<!-- Description -->
 						<h4>Description</h4>
-						<p>jqxinput의 높이를 설정하거나 가져옵니다</p>
+						<p>jqxinput의 높이를 설정하거나 가져옵니다.</p>
 						<h4>Code Example</h4>
 <pre><code>
 /* Set Property */

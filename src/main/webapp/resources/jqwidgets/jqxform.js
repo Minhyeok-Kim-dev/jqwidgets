@@ -945,7 +945,7 @@
 			let _this = this;
 			let id = "el_" + seq;
 			let obj = _this._getTool(seq);
-			let elem = this.host.find("#" + id);
+			let elem = _this.host.find("#" + id);
 			
 			if (obj.init) {
 			    obj.init(elem);
@@ -960,7 +960,7 @@
 				let dropDownWidth = isNaN(parseFloat(obj.dropDownWidth)) ? null : obj.dropDownWidth;
 				let displayMember = typeof obj.displayMember === "undefined" ? "" : obj.displayMember;
 				let valueMember = typeof obj.valueMember === "undefined" ? "" : obj.valueMember;
-				let items = typeof obj.items === "undefiend" ? 8 : obj.items;
+				let items = typeof obj.items === "undefined" ? 8 : obj.items;
 				let maxLength = typeof obj.maxLength === "undefined" ? null : obj.maxLength;
 				let opened = typeof obj.opened === "undefined" ? false : obj.opened;
 				let popupZIndex = typeof obj.popupZIndex === "undefined" ? 2000 : obj.popupZIndex;
@@ -1056,19 +1056,63 @@
 		},
 		_initPasswordTool: function (seq) {
 		    let _this = this;
-			var id = "el_" + seq;
-			var obj = _this._getTool(seq);
-			var elem = _this.host.find("#" + id);
+			let id = "el_" + seq;
+			let obj = _this._getTool(seq);
+			let elem = _this.host.find("#" + id);
 			
 			if (obj.init) {
 			    obj.init(elem);
 			} else {
 				let width = isNaN(parseFloat(obj.width)) ? "auto" : obj.width;
 				let height = isNaN(parseFloat(obj.height)) ? "25px" : obj.height;
+				let disabled = obj.disabled;
+				let showStrength = typeof obj.showStrength === "undefined" ? false : obj.showStrength;
+				let localization = typeof obj.localization === "undefined" ? 
+				        {
+                            "passwordStrengthString" : "Password strength",
+                            "tooShort": "Too short",
+                            "weak" : "Weak",
+                            "fair" : "Fair",
+                            "good" : "Good",
+                            "strong" : "Strong",
+                            "showPasswordString" : "Show Password"
+				        } : obj.localization;
+				let maxLength = typeof obj.maxLength === "undefined" ? null : obj.maxLength;
+				let placeHolder = typeof obj.placeHolder === "undefined" ? null : obj.placeHolder
+				let passwordStrength = typeof obj.passwordStrength === "undefined" ? null : obj.passwordStrength;
+				
 				elem.jqxPasswordInput({
-					"theme" : this.theme,
+				    /*
 					"width" : width,
-					"height" : height
+					"height" : height,
+					"disabled" : disabled,
+					"localization" : localization
+					*/
+				   
+				    "theme" : _this.theme,
+				    "width" : width,
+				    "height" : height,
+				    "disabled" : disabled,
+				    "showStrength" : showStrength,
+				    "localization" : localization,
+				    "maxLength" : maxLength,
+				    "placeHolder" : placeHolder,
+				    "passwordStrength" : passwordStrength,
+				    
+	                rtl: false,
+	                showStrengthPosition: "right",
+	                minLength: null,
+	                showPasswordIcon: true,
+	                strengthTypeRenderer: null,
+	                changeType: null,
+	                hint: true,
+	                strengthColors: {
+	                    tooShort: "rgb(170, 0, 51)",
+	                    weak: "rgb(170, 0, 51)",
+	                    fair: "rgb(255, 204, 51)",
+	                    good: "rgb(45, 152, 243)",
+	                    strong: "rgb(118, 194, 97)"
+	                }
 				});
 			}
 			

@@ -65,7 +65,7 @@
 		</ul>
 	</div>
 	<div>
-		Header2
+		jqxPasswordInput
 	</div>
 	<div>
 		<ul>

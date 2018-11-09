@@ -27,6 +27,9 @@ public class HomeController {
 		case 0:
 			page += "jqxinput";
 			break;
+		case 1:
+			page += "jqxpasswordinput";
+			break;
 		}
 		
 		return page;
