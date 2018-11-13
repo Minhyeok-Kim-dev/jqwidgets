@@ -1740,7 +1740,6 @@ txtChange.on("change", function(event) {
    
    	$("#log_change").html("type : " + type + " // value : " + value);
 });
-
 </code></pre>
 						
                     </div>
@@ -2102,7 +2101,6 @@ $("#btnSetVal").on("click", function() {
 	txtVal.val("new text!!!!");
 });
 </code></pre>
-						
                     </div>
                 </td>
             </tr>

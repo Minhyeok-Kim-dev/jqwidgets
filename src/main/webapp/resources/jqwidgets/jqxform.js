@@ -447,8 +447,10 @@
 			var b = "padding-left: " + parseFloat(this.padding.left) + "px;padding-right: " + parseFloat(this.padding.right) + "px;padding-top: " + parseFloat(this.padding.top) + "px;padding-bottom: " + parseFloat(this.padding.bottom) + "px;";
 			var f = "<table id='formWrap' style='background-color: " + this.backgroundColor + "; width: 100%; white-space: nowrap; border: 0px;" + b + "' cellpadding='0' cellspacing='0'><div id='formSubmit' style='display:hidden;'><div>";
 			var j = this.template;
+			
+			let parentId = this.host.attr("id");   
 			for (var e = 0; e < j.length; e++) {
-				var h = "el_" + e;
+				var h = parentId + "_el_" + e;   // 181113_kmh el_0 -> parentDivId_el_01 
 				var d = this.template[e];
 				var g = this._getToolTemplate(d, h);
 				f += g
@@ -943,7 +945,8 @@
 		},
 		_initTextTool: function (seq) {
 			let _this = this;
-			let id = "el_" + seq;
+			let parentId = this.host.attr("id");
+			let id = parentId + "_el_" + seq;
 			let obj = _this._getTool(seq);
 			let elem = _this.host.find("#" + id);
 			
@@ -1056,7 +1059,8 @@
 		},
 		_initPasswordTool: function (seq) {
 		    let _this = this;
-			let id = "el_" + seq;
+		    let parentId = this.host.attr("id");
+			let id = parentId + "_el_" + seq;
 			let obj = _this._getTool(seq);
 			let elem = _this.host.find("#" + id);
 			
@@ -1080,15 +1084,24 @@
 				let maxLength = typeof obj.maxLength === "undefined" ? null : obj.maxLength;
 				let placeHolder = typeof obj.placeHolder === "undefined" ? null : obj.placeHolder
 				let passwordStrength = typeof obj.passwordStrength === "undefined" ? null : obj.passwordStrength;
+				let rtl = typeof obj.rtl === "undefined" ? false : obj.rtl;
+				let strengthColors = typeof obj.strenghColors === "undefined" ?
+				        {
+                            tooShort: "rgb(170, 0, 51)",
+                            weak: "rgb(170, 0, 51)",
+                            fair: "rgb(255, 204, 51)",
+                            good: "rgb(45, 152, 243)",
+                            strong: "rgb(118, 194, 97)"
+                        } : obj.strengthColors;
+				let showStrengthPosition = typeof obj.showStrengthPosition === "undefined" ?
+				        "right" : obj.showStrengthPosition;
+				
+				let strengthTypeRenderer = typeof obj.strengthTypeRenderer === "undefined" ?
+				        null : obj.strengthTypeRenderer;
+				
+				let showPasswordIcon = typeof obj.showPasswordIcon === "undefined" ? true : obj.showPasswordIcon;
 				
 				elem.jqxPasswordInput({
-				    /*
-					"width" : width,
-					"height" : height,
-					"disabled" : disabled,
-					"localization" : localization
-					*/
-				   
 				    "theme" : _this.theme,
 				    "width" : width,
 				    "height" : height,
@@ -1098,21 +1111,15 @@
 				    "maxLength" : maxLength,
 				    "placeHolder" : placeHolder,
 				    "passwordStrength" : passwordStrength,
+				    "rtl" : rtl,
+				    "strengthColors" : strengthColors,
+				    "showStrengthPosition" : showStrengthPosition,
+				    "strengthTypeRenderer" : strengthTypeRenderer,
+				    "showPasswordIcon" : showPasswordIcon,
 				    
-	                rtl: false,
-	                showStrengthPosition: "right",
 	                minLength: null,
-	                showPasswordIcon: true,
-	                strengthTypeRenderer: null,
 	                changeType: null,
 	                hint: true,
-	                strengthColors: {
-	                    tooShort: "rgb(170, 0, 51)",
-	                    weak: "rgb(170, 0, 51)",
-	                    fair: "rgb(255, 204, 51)",
-	                    good: "rgb(45, 152, 243)",
-	                    strong: "rgb(118, 194, 97)"
-	                }
 				});
 			}
 			
@@ -1214,7 +1221,8 @@
 			this.getComponentByName(fieldNm).focus();
 		},
 		_getComponentById: function (c) {
-			var b = this.host.find("#el_" + c);
+		    let parentId = this.host.attr("id");  // 181113_kmh
+			var b = this.host.find("#" + parentId + "_el_" + c);
 			return b
 		},
 		_getComponentLabelById: function (c) {

@@ -61,19 +61,12 @@
 			<li><a href="/widgets/jqxinput_default">default</a></li>
 			<li><a href="/widgets/jqxinput_label">label</a></li>
 			<li><a href="/widgets/jqxinput_getter_setter">getter &amp; setter</a></li>
-			<li>0104</li>
 		</ul>
 	</div>
 	<div>
 		jqxPasswordInput
 	</div>
 	<div>
-		<ul>
-			<li>0201</li>
-			<li>0202</li>
-			<li>0203</li>
-			<li>0204</li>
-		</ul>
 	</div>
 	<div>
 		Header3
