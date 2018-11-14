@@ -69,14 +69,8 @@
 	<div>
 	</div>
 	<div>
-		Header3
+		jqxDateTimeInput
 	</div>
 	<div>
-		<ul>
-			<li>0301</li>
-			<li>0302</li>
-			<li>0303</li>
-			<li>0304</li>
-		</ul>
 	</div>
 </div>

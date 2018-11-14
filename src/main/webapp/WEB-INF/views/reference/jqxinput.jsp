@@ -641,7 +641,7 @@
 						<div id="jqxinputForm_disabled"></div>
 						<!-- Description -->
 						<h4>Description</h4>
-						<p>jqxinput을 활성화 또는 비활성화 합니다.</p>
+						<p>위젯을 비활성화하는 프로퍼티를 설정하거나 가져옵니다.</p>
 						<h4>Code Example</h4>
 <pre><code>
 /* Set Property */

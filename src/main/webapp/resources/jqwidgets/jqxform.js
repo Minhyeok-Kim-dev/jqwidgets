@@ -448,9 +448,9 @@
 			var f = "<table id='formWrap' style='background-color: " + this.backgroundColor + "; width: 100%; white-space: nowrap; border: 0px;" + b + "' cellpadding='0' cellspacing='0'><div id='formSubmit' style='display:hidden;'><div>";
 			var j = this.template;
 			
-			let parentId = this.host.attr("id");   
+			let formId = this.host.attr("id");   
 			for (var e = 0; e < j.length; e++) {
-				var h = parentId + "_el_" + e;   // 181113_kmh el_0 -> parentDivId_el_01 
+				var h = formId + "_el_" + e;   // 181113_kmh el_0 -> fId_el_01 
 				var d = this.template[e];
 				var g = this._getToolTemplate(d, h);
 				f += g
@@ -945,8 +945,8 @@
 		},
 		_initTextTool: function (seq) {
 			let _this = this;
-			let parentId = this.host.attr("id");
-			let id = parentId + "_el_" + seq;
+			let formId = this.host.attr("id");
+			let id = formId + "_el_" + seq;
 			let obj = _this._getTool(seq);
 			let elem = _this.host.find("#" + id);
 			
@@ -1059,8 +1059,8 @@
 		},
 		_initPasswordTool: function (seq) {
 		    let _this = this;
-		    let parentId = this.host.attr("id");
-			let id = parentId + "_el_" + seq;
+		    let formId = this.host.attr("id");
+			let id = formId + "_el_" + seq;
 			let obj = _this._getTool(seq);
 			let elem = _this.host.find("#" + id);
 			
@@ -1129,7 +1129,8 @@
 		},
 		_initDateTimeTool: function (seq) {
 		    let _this = this;
-            let id = "el_" + seq;
+		    let formId = this.host.attr("id");
+            let id = formId + "_el_" + seq;
             let obj = _this._getTool(seq);
             let elem = _this.host.find("#" + id);
             
@@ -1137,7 +1138,7 @@
                 obj.init(elem);
             } else {
                 let width = isNaN(parseFloat(obj.width)) ? "auto" : obj.width;
-                let height = isNaN(parseFloat(obj.height)) ? "30px" : obj.height;
+                let height = isNaN(parseFloat(obj.height)) ? "25px" : obj.height;
                 let formatString = obj.formatString;
                 
                 if (!formatString) {
@@ -1152,13 +1153,52 @@
                     }
                 }
                 
+                let animationType = typeof obj.animationType === "undefined" ? "slide" : obj.animationType;
+                let allowNullDate = typeof obj.allowNullDate === "undefined" ? true : obj.allowNullDate;
+                let allowKeyboardDelete = typeof obj.allowKeyboardDelete === "undefined" ? true : obj.allowKeyboardDelete;
+                let showFooter = typeof obj.showFooter === "undefined" ? false : obj.showFooter;
+                let clearString = typeof obj.clearString === "undefined" ? "Clear" : obj.clearString; 
+                let culture = typeof obj.culture === "undefined" ? "default" : obj.culture;
+                let closeDelay = typeof obj.closeDelay === "undefined" ? 400 : obj.closeDelay;
+                let closeCalendarAfterSelection = typeof obj.closeCalendarAfterSelection === "undefined" ?
+                        true : obj.closeCalendarAfterSelection;
+                let dropDownHorizontalAlignment = typeof obj.dropDownHorizontalAlignment === "undefined" ? 
+                        "left" : obj.dropDownHorizontalAlignment;
+                let dropDownVerticalAlignment = typeof obj.dropDownVerticalAlignment === "undefined" ?
+                        "bottom" : obj.dropDownVerticalAlignment;
+                let disabled = typeof obj.disabled === "undefined" ? false : obj.disabled;
+                let enableBrowserBoundsDetection = typeof obj.enableBrowserBoundsDetection === "undefined" ? 
+                        false : obj.enableBrowserBoundsDetection;
+                let enableAbsoluteSelection = typeof obj.enableAbsoluteSelection === "undefined" ?
+                        false : obj.enableAbsoluteSelection;
+                let firstDayOfWeek = typeof obj.firstDayOfWeek === "undefined" ? 0 : obj.firstDayOfWeek;
+                let min = typeof obj.min === "undefined" ? new Date(1900, 0, 1) : obj.min;
+                let max = typeof obj.max === "undefined" ? new Date(2100, 0, 1) : obj.max;
+                
                 elem.jqxDateTimeInput({
                     "theme": this.theme,
                     "width": width,
                     "height": height,
                     "formatString": formatString,
                     "showTimeButton": obj.type != "date",
-                    "showCalendarButton": obj.type != "time"
+                    "showCalendarButton": obj.type != "time",
+                    "animationType" : animationType,
+                    "allowNullDate" : allowNullDate,
+                    "allowKeyboardDelete" : allowKeyboardDelete,
+                    "showFooter" : showFooter,
+                    "clearString" : clearString,
+                    "culture" : culture,
+                    "closeDelay" : closeDelay,
+                    "closeCalendarAfterSelection" : closeCalendarAfterSelection,
+                    "dropDownVerticalAlignment" : dropDownVerticalAlignment,
+                    "dropDownHorizontalAlignment" : dropDownHorizontalAlignment,
+                    "disabled" : disabled,
+                    "enableBrowserBoundsDetection" : enableBrowserBoundsDetection,
+                    "enableAbsoluteSelection" : enableAbsoluteSelection,
+                    "firstDayOfWeek" : firstDayOfWeek,
+                    "formatString" : formatString,
+                    "min" : min,
+                    "max" : max,
                 });
             }
             
@@ -1221,8 +1261,8 @@
 			this.getComponentByName(fieldNm).focus();
 		},
 		_getComponentById: function (c) {
-		    let parentId = this.host.attr("id");  // 181113_kmh
-			var b = this.host.find("#" + parentId + "_el_" + c);
+		    let formId = this.host.attr("id");  // 181113_kmh
+			var b = this.host.find("#" + formId + "_el_" + c);
 			return b
 		},
 		_getComponentLabelById: function (c) {

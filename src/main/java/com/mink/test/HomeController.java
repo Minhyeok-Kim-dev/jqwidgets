@@ -30,6 +30,9 @@ public class HomeController {
 		case 1:
 			page += "jqxpasswordinput";
 			break;
+		case 2:
+			page += "jqxdatetimeinput";
+			break;
 		}
 		
 		return page;

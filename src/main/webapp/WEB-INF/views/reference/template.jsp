@@ -64,10 +64,156 @@
 			<tr>
 				<td colspan="3" style="width: 100%">
 					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
 						<div id="jqxinputForm_disabled"></div>
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>jqxinput을 활성화 또는 비활성화 합니다.</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* Set Property */
+let template_disabled = [{
+   	"bind" : "txtDisabled",
+    "name" : "txtDisabled",
+	"type" : "text",	
+	"width" : "250px",	
+	"height" : "25px",	
+	"placeHolder" : "disabled",
+	"disabled" : true
+}];
+
+$("#jqxinputForm_disabled").jqxForm({
+  	"template" : template_disabled
+});
+
+// case 2 : element에 property 설정
+let txtDisabled = $("#jqxinputForm").jqxForm("getComponentByName", "txtDisabled");
+txtDisabled.jqxInput("disabled", true);
+
+
+/* Get Property */
+
+let txtDisabled = $("#jqxinputForm").jqxForm("getComponentByName", "txtDisabled");
+let disabled = txtDisabled.jqxInput("disabled"); 
+</code></pre>
+						
                     </div>
                 </td>
             </tr>
         </tbody>
+	</table>
+</div>
+<div id="events">
+	<h2 class="documentation-top-header">Events</h2>
+	
+	<table class="documentation-table">
+		<tbody>
+			<!-- change -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">change</span>
+				</td>
+				<td>
+					<span>Event</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxinputForm_change"></div>
+						<div id="log_change"></div>
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>값이 변경된 경우 trigger됩니다.</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let template_change = [{
+    "bind" : "txtChange",
+    "name" : "txtChange",
+	"type" : "password",	
+	"width" : "250px"
+}];
+
+$("#jqxinputForm_change").jqxForm({
+  	"template" : template_change
+});
+
+
+/* 이벤트 설정 */
+let txtChange = $("#jqxinputForm_change").jqxForm("getComponentByName", "txtChange"); 
+txtChange.on("change", function(event) {
+   	let type = event.args.type;		// 어디로부터 값이 입력되었는지 (keyboard, mouse or null) 
+   	let value = txtChange.val();	// inputBox에 입력된 값
+   
+   	$("#log_change").html("type : " + type + " // value : " + value);
+});
+</code></pre>
+						
+                    </div>
+                </td>
+            </tr>
+		</tbody>
+	</table>
+</div>
+<div id="methods">
+	<h2 class="documentation-top-header">Methods</h2>
+	
+	<table class="documentation-table">
+		<tbody>
+			<!-- render -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">render</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxinputForm_render"></div>
+						<input type="button" id="btnRender" value="Render" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>위젯을 렌더링합니다.</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let template_render = [{
+    "bind" : "txtRender",
+    "name" : "txtRender",
+	"type" : "password",	
+	"width" : "250px",	
+	"height" : "25px"
+}];
+
+$("#jqxinputForm_render").jqxForm({
+  	"template" : template_render
+});
+
+
+/* 이벤트 설정 */
+let txtRender = $("#jqxinputForm_render").jqxForm("getComponentByName", "txtRender");
+ 
+$("#btnRender").on("click", function() {
+   	txtRender.jqxInput("render");
+});
+</code></pre>
+						
+                    </div>
+                </td>
+            </tr>
+		</tbody>
 	</table>
 </div>
