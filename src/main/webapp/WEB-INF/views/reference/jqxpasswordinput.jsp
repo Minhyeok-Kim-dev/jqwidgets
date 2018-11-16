@@ -1176,7 +1176,7 @@ let showPasswordIcon = txtShowPasswordIcon.jqxPasswordInput("showPasswordIcon");
 						<div id="jqxinputForm_theme"></div>
 						<!-- Description -->
 						<h4>Description</h4>
-						<p>input box의 theme를 설정합니다.</p>
+						<p>위젯의 theme를 설정합니다.</p>
 						<p>css파일은 한 쌍으로 사용되며 jqx.base.css, jqx.[theme name].css로 구분됩니다. </p>
 						<p>base stylesheet는 위젯의 레이아웃을 설정하며. theme name stylesheet는 위젯의 색상 및 배경을 담당합니다.</p>
 						<p>include 순서는 base -> theme 순으로 진행하여야 합니다.</p>

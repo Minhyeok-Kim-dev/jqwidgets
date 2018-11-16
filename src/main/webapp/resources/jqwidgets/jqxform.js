@@ -969,11 +969,11 @@
 				let popupZIndex = typeof obj.popupZIndex === "undefined" ? 2000 : obj.popupZIndex;
 				let renderer = typeof obj.renderer === "undefined" ? b => {return b} : obj.renderer; // this._renderer 미호출된다?
 				let rtl = typeof obj.rtl === "undefined" ? false : obj.rtl;
+				let theme = typeof obj.theme === "undefined" ? "" : obj.theme;
 				
-				
-				// properties
+				// Properties
 				elem.jqxInput({
-					"theme" : _this.theme,
+					"theme" : theme,
 					"width" : width,
 					"height" : height,
 					"placeHolder" : placeHolder,
@@ -1100,9 +1100,11 @@
 				        null : obj.strengthTypeRenderer;
 				
 				let showPasswordIcon = typeof obj.showPasswordIcon === "undefined" ? true : obj.showPasswordIcon;
+				let theme = typeof obj.theme === "undefined" ? "" : obj.theme;
 				
+				// Properties
 				elem.jqxPasswordInput({
-				    "theme" : _this.theme,
+				    "theme" : theme,
 				    "width" : width,
 				    "height" : height,
 				    "disabled" : disabled,
@@ -1160,28 +1162,36 @@
                 let clearString = typeof obj.clearString === "undefined" ? "Clear" : obj.clearString; 
                 let culture = typeof obj.culture === "undefined" ? "default" : obj.culture;
                 let closeDelay = typeof obj.closeDelay === "undefined" ? 400 : obj.closeDelay;
-                let closeCalendarAfterSelection = typeof obj.closeCalendarAfterSelection === "undefined" ?
-                        true : obj.closeCalendarAfterSelection;
-                let dropDownHorizontalAlignment = typeof obj.dropDownHorizontalAlignment === "undefined" ? 
-                        "left" : obj.dropDownHorizontalAlignment;
-                let dropDownVerticalAlignment = typeof obj.dropDownVerticalAlignment === "undefined" ?
-                        "bottom" : obj.dropDownVerticalAlignment;
+                let closeCalendarAfterSelection = typeof obj.closeCalendarAfterSelection === "undefined" ? true : obj.closeCalendarAfterSelection;
+                let dropDownHorizontalAlignment = typeof obj.dropDownHorizontalAlignment === "undefined" ? "left" : obj.dropDownHorizontalAlignment;
+                let dropDownVerticalAlignment = typeof obj.dropDownVerticalAlignment === "undefined" ? "bottom" : obj.dropDownVerticalAlignment;
                 let disabled = typeof obj.disabled === "undefined" ? false : obj.disabled;
-                let enableBrowserBoundsDetection = typeof obj.enableBrowserBoundsDetection === "undefined" ? 
-                        false : obj.enableBrowserBoundsDetection;
-                let enableAbsoluteSelection = typeof obj.enableAbsoluteSelection === "undefined" ?
-                        false : obj.enableAbsoluteSelection;
+                let enableBrowserBoundsDetection = typeof obj.enableBrowserBoundsDetection === "undefined" ? false : obj.enableBrowserBoundsDetection;
+                let enableAbsoluteSelection = typeof obj.enableAbsoluteSelection === "undefined" ? false : obj.enableAbsoluteSelection;
                 let firstDayOfWeek = typeof obj.firstDayOfWeek === "undefined" ? 0 : obj.firstDayOfWeek;
                 let min = typeof obj.min === "undefined" ? new Date(1900, 0, 1) : obj.min;
                 let max = typeof obj.max === "undefined" ? new Date(2100, 0, 1) : obj.max;
-                
+                let openDelay = typeof obj.openDelay === "undefined" ? 250 : obj.openDelay;
+                let placeHolder = typeof obj.placeHolder === "undefined" ? "" : obj.placeHolder;
+                let popupZIndex = typeof obj.popupZIndex === "undefined" ? 2000 : obj.popupZIndex;
+                let rtl = typeof obj.rtl === "undefined" ? false : obj.rtl;
+                let readonly = typeof obj.readonly === "undefined" ? false : obj.readonly;
+                let selectionMode = typeof obj.selectionMode === "undefined" ? "default" : obj.selectionMode;
+                let showWeekNumbers = typeof obj.showWeekNumbers === "undefined" ? false : obj.showWeekNumbers;
+                let showTimeButton = typeof obj.showTimeButton === "undefined" ? false : obj.showTimeButton;
+                let showCalendarButton = typeof obj.showCalendarButton === "undefined" ? true : obj.showCalendarButton;
+                let theme = typeof obj.theme === "undefined" ? "" : obj.theme;
+                let template = typeof obj.template === "undefined" ? "default" : obj.template;
+                let textAlign = typeof obj.textAlign === "undefined" ? "left" : obj.textAlign;
+                let todayString = typeof obj.todayString === "undefined" ? "Today" : obj.todayString;
+                let value = typeof obj.value === "undefined" ? new Date() : obj.value; 
+                        
+                // Properties
                 elem.jqxDateTimeInput({
-                    "theme": this.theme,
+                    "theme": theme,
                     "width": width,
                     "height": height,
                     "formatString": formatString,
-                    "showTimeButton": obj.type != "date",
-                    "showCalendarButton": obj.type != "time",
                     "animationType" : animationType,
                     "allowNullDate" : allowNullDate,
                     "allowKeyboardDelete" : allowKeyboardDelete,
@@ -1199,6 +1209,21 @@
                     "formatString" : formatString,
                     "min" : min,
                     "max" : max,
+                    "openDelay" : openDelay,
+                    "placeHolder" : placeHolder,
+                    "popupZIndex" : popupZIndex,
+                    "rtl" : rtl,
+                    "readonly" : readonly,
+                    "selectionMode" : selectionMode,
+                    "showWeekNumbers" : showWeekNumbers,
+                    //"showTimeButton": obj.type != "date",         // TODO : date, time 분리해서 처리할건지?
+                    //"showCalendarButton": obj.type != "time",
+                    "showTimeButton" : showTimeButton,
+                    "showCalendarButton" : showCalendarButton,
+                    "template" : template,
+                    "textAlign" : textAlign,
+                    "todayString" : todayString,
+                    "value" : value
                 });
             }
             
