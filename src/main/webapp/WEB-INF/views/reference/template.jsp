@@ -21,17 +21,41 @@
 		/* Properties */
 		// disabled
 		let template_disabled = [{
-			"bind" : "txtName",	
-			"name" : "txtName",	 
+		   	"bind" : "txtDisabled",
+		    "name" : "txtDisabled",
 			"type" : "text",	
 			"width" : "250px",	
 			"height" : "25px",	
-			"placeHolder" : "disabled"
+			"placeHolder" : "disabled",
+			"disabled" : true	// property 설정
 		}];
 		
 		$("#jqxinputForm_disabled").jqxForm({
-	   		"template" : template_disabled
+		  	"template" : template_disabled
 		});
+		
+		
+		// height
+		// mask
+		// promptChar
+		// readOnly
+		// rtl
+		// theme
+		// textAlign
+		// value
+		// width
+		
+		/* Events */
+		// change
+		// valueChanged
+		
+		/* Methods */
+		// clear
+		// destroy
+		// focus
+		// val
+		
+		
 	});
 </script>
 
@@ -50,6 +74,7 @@
                 <th>Type</th>
                 <th>Default</th>
 			</tr>
+			<!-- disabled -->
 			<tr>
 				<td class="documentation-option-type-click">
 					<span id="Span2">disabled</span>
@@ -69,7 +94,7 @@
 						<div id="jqxinputForm_disabled"></div>
 						<!-- Description -->
 						<h4>Description</h4>
-						<p>jqxinput을 활성화 또는 비활성화 합니다.</p>
+						<p>위젯을 비활성화하는 프로퍼티를 설정하거나 가져옵니다.</p>
 						<h4>Code Example</h4>
 <pre><code>
 /* Set Property */
@@ -80,7 +105,7 @@ let template_disabled = [{
 	"width" : "250px",	
 	"height" : "25px",	
 	"placeHolder" : "disabled",
-	"disabled" : true
+	"disabled" : true	// property 설정
 }];
 
 $("#jqxinputForm_disabled").jqxForm({
@@ -88,14 +113,14 @@ $("#jqxinputForm_disabled").jqxForm({
 });
 
 // case 2 : element에 property 설정
-let txtDisabled = $("#jqxinputForm").jqxForm("getComponentByName", "txtDisabled");
-txtDisabled.jqxInput("disabled", true);
+let txtDisabled = $("#jqxinputForm_disabled").jqxForm("getComponentByName", "txtDisabled");
+txtDisabled.jqxMaskedInput("disabled", true);
 
 
 /* Get Property */
 
-let txtDisabled = $("#jqxinputForm").jqxForm("getComponentByName", "txtDisabled");
-let disabled = txtDisabled.jqxInput("disabled"); 
+let txtDisabled = $("#jqxinputForm_disabled").jqxForm("getComponentByName", "txtDisabled");
+let disabled = txtDisabled.jqxMaskedInput("disabled"); 
 </code></pre>
 						
                     </div>

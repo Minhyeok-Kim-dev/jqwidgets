@@ -1234,15 +1234,38 @@
 		// 180928_kmh Component 초기화 설정
 		_initMaskedInputTool: function(seq) {
 		    let _this = this;
-            let id = "el_" + seq;
+		    let formId = this.host.attr("id");
+            let id = formId + "_el_" + seq;
             let obj = _this._getTool(seq);
             let elem = _this.host.find("#" + id);
             
             if (obj.init) {
                 obj.init(elem);
             } else {
+                let disabled = typeof obj.disabled === "undefined" ? false : obj.disabled;
+                let placeHolder = typeof obj.placeHolder === "undefined" ? "" : obj.placeHolder;
+                let width = isNaN(parseFloat(obj.height)) ? "200px" : obj.height;
+                let height = isNaN(parseFloat(obj.height)) ? "25px" : obj.height;
+                let mask = typeof obj.mask === "undefined" ? "99999" : obj.mask;
+                let promptChar = typeof obj.promptChar === "undefined" ? "_" : obj.promptChar;
+                let readOnly = typeof obj.readOnly === "undefined" ? false : obj.readOnly;
+                let rtl = typeof obj.rtl === "undefined" ? false : obj.rtl;
+                let theme = typeof obj.theme === "undefined" ? "" : obj.theme;
+                let textAlign = typeof obj.textAlign === "undefined" ? "left" : obj.textAlign;
+                let value = typeof obj.value === "undefined" ? null : obj.value;
+                
                 elem.jqxMaskedInput({
-                    "mask" : obj.mask
+                    "disabled" : disabled,
+                    "placeHolder" : placeHolder, 
+                    "width" : width,
+                    "height" : height,
+                    "mask" : mask,
+                    "promptChar" : promptChar,
+                    "readOnly" : readOnly,
+                    "rtl" : rtl,
+                    "theme" : theme,
+                    "textAlign" : textAlign,
+                    "value" : value
                 });
             }
 		},

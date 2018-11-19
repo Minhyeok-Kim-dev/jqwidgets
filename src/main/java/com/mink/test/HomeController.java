@@ -33,6 +33,9 @@ public class HomeController {
 		case 2:
 			page += "jqxdatetimeinput";
 			break;
+		case 3:
+			page += "jqxmaskedinput";
+			break;
 		}
 		
 		return page;

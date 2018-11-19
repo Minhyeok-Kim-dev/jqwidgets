@@ -73,4 +73,9 @@
 	</div>
 	<div>
 	</div>
+	<div>
+		jqxMaskedInput
+	</div>
+	<div>
+	</div>
 </div>
