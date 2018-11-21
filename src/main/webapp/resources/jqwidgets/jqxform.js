@@ -682,6 +682,14 @@
     				    		"<div></div>" +
 				    		"</div>" + 
 		    		    "</div>";
+	            } else if (g.type === "complexinput") {
+	                // 181121_kmh complexinput element 추가
+	                u = "<div style='background: transparent;" + r + D + "'>" +
+                            "<div style='width: auto; height: auto; " + x + "' id='" + s + "'>" + 
+                                "<input type='text' />" +
+                                "<div></div>" +
+                            "</div>" + 
+                        "</div>";
 	            }
 			} 
 			if (g.type == "option" && g.component != "jqxDropDownList" && !isNaN(j)) {
@@ -808,6 +816,9 @@
 				    break;
 				case "formattedinput":
 				    this._initFormattedInputTool(g);
+				    break;
+				case "complexinput":
+				    this._initComplexInputTool(g);
 				    break;
 				}
 				if (b.visible === false) {
@@ -1342,6 +1353,50 @@
                     "_opened" : false,
                     "$popup" : a("<ul></ul>"),
                     "item" : '<li><a href="#"></a></li>',
+                });
+            }
+		},
+		_initComplexInputTool: function(seq) {
+		    let _this = this;
+            let formId = this.host.attr("id");
+            let id = formId + "_el_" + seq;
+            let obj = _this._getTool(seq);
+            let elem = _this.host.find("#" + id);
+            
+            if (obj.init) {
+                obj.init(elem);
+            } else {
+                let decimalNotation = typeof obj.decimalNotation === "undefined" ? "default" : obj.decimalNotation;
+                let disabled = typeof obj.disabled === "undefined" ? false : obj.disabled;
+                let height = isNaN(parseFloat(obj.height)) ? 25 : obj.height;
+                let placeHolder = typeof obj.placeHolder === "undefined" ? "" : obj.placeHolder;
+                let roundedCorners = typeof obj.roundedCorners === "undefined" ? true : obj.roundedCorners;
+                let rtl = typeof obj.rtl === "undefined" ? false : obj.rtl;
+                let spinButtons = typeof obj.spinButtons === "undefined" ? false : obj.spinButtons;
+                let spinButtonsStep = typeof obj.spinButtonsStep === "undefined" ? 1 : obj.spinButtonsStep;
+                let template = typeof obj.template === "undefined" ? "default" : obj.template;
+                let theme = typeof obj.theme === "undefined" ? "" : obj.theme;
+                let value = typeof obj.value === "undefined" ? "" : obj.value;
+                let width = isNaN(parseFloat(obj.width)) ? 200 : obj.width;
+                
+                
+                elem.jqxComplexInput({
+                    "decimalNotation" : decimalNotation,
+                    "disabled" : disabled,
+                    "height" : height,
+                    "placeHolder" : placeHolder,
+                    "roundedCorners" : roundedCorners,
+                    "rtl" : rtl, 
+                    "spinButtons" : spinButtons,
+                    "spinButtonsStep" : spinButtonsStep,
+                    "template" : template,
+                    "theme" : theme,
+                    "value" : value,
+                    
+                    
+                    "width" : width,
+                    "changeType" : null,
+                    "hint" : true,
                 });
             }
 		},

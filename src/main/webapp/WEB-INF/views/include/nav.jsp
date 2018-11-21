@@ -83,4 +83,9 @@
 	</div>
 	<div>
 	</div>
+	<div>
+		jqxComplexInput
+	</div>
+	<div>
+	</div>
 </div>

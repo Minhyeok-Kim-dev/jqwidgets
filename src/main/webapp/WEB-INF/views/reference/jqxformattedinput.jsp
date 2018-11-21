@@ -1334,12 +1334,12 @@ $("#jqxinputForm_template").jqxForm({
 
 // case 2 : element에 property 설정
 let txtTemplate = $("#jqxinputForm_template").jqxForm("getComponentByName", "txtTemplate");
-txtTemplate.jqxDateTimeInput("template", "warning");
+txtTemplate.jqxFormattedInput("template", "warning");
 
 
 /* Get Property */
 let txtTemplate = $("#jqxinputForm_template").jqxForm("getComponentByName", "txtTemplate");
-let template = txtTemplate.jqxDateTimeInput("template"); 
+let template = txtTemplate.jqxFormattedInput("template"); 
 </code></pre>
                     </div>
                 </td>
@@ -1390,12 +1390,12 @@ $("#jqxinputForm_theme").jqxForm({
 
 // case 2 : element에 property 설정
 let txtTheme = $("#jqxinputForm_theme").jqxForm("getComponentByName", "txtTheme");
-txtTheme.jqxDateTimeInput("theme", "energyblue");
+txtTheme.jqxFormattedInput("theme", "energyblue");
 
 
 /* Get Property */
 let txtTheme = $("#jqxinputForm_theme").jqxForm("getComponentByName", "txtTheme");
-let theme = txtTheme.jqxDateTimeInput("theme"); 
+let theme = txtTheme.jqxFormattedInput("theme"); 
 </code></pre>
                     </div>
                 </td>
