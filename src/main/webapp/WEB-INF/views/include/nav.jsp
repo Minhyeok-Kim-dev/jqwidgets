@@ -78,4 +78,9 @@
 	</div>
 	<div>
 	</div>
+	<div>
+		jqxFormattedInput
+	</div>
+	<div>
+	</div>
 </div>

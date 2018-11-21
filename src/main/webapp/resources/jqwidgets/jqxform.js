@@ -443,20 +443,20 @@
 			b.val(d)
 		},
 		_createTemplateHtml: function () {
-			var c = this.groups;
-			var b = "padding-left: " + parseFloat(this.padding.left) + "px;padding-right: " + parseFloat(this.padding.right) + "px;padding-top: " + parseFloat(this.padding.top) + "px;padding-bottom: " + parseFloat(this.padding.bottom) + "px;";
-			var f = "<table id='formWrap' style='background-color: " + this.backgroundColor + "; width: 100%; white-space: nowrap; border: 0px;" + b + "' cellpadding='0' cellspacing='0'><div id='formSubmit' style='display:hidden;'><div>";
-			var j = this.template;
+			let groups = this.groups;
+			let paddingAttr = "padding-left: " + parseFloat(this.padding.left) + "px;padding-right: " + parseFloat(this.padding.right) + "px;padding-top: " + parseFloat(this.padding.top) + "px;padding-bottom: " + parseFloat(this.padding.bottom) + "px;";
+			let formWrapTbl = "<table id='formWrap' style='background-color: " + this.backgroundColor + "; width: 100%; white-space: nowrap; border: 0px;" + paddingAttr + "' cellpadding='0' cellspacing='0'><div id='formSubmit' style='display:hidden;'><div>";
+			var template = this.template;
 			
 			let formId = this.host.attr("id");   
-			for (var e = 0; e < j.length; e++) {
-				var h = formId + "_el_" + e;   // 181113_kmh el_0 -> fId_el_01 
-				var d = this.template[e];
-				var g = this._getToolTemplate(d, h);
-				f += g
+			for (let i = 0; i < template.length; i++) {
+				let id = formId + "_el_" + i;   // 181113_kmh el_0 -> formId_el_01 
+				var templateElem = this.template[i];
+				var toolTemplate = this._getToolTemplate(templateElem, id);
+				formWrapTbl += toolTemplate;
 			}
-			f += "</table>";
-			return f
+			formWrapTbl += "</table>";
+			return formWrapTbl;
 		},
 		_beginRow: function (e, b, c) {
 			if (undefined === b) {
@@ -568,6 +568,8 @@
 			}
 		},
 		_getToolTemplate: function (h, s, j, q) {
+		    
+		    
 			var g = {};
 			for (p in h) {
 				g[p.toLowerCase()] = h[p]
@@ -591,6 +593,7 @@
 				v += this._endRow();
 				return v
 			}
+			
 			if (g.type == "option" && g.component != "jqxDropDownList") {
 				if (isNaN(j)) {
 					var B = this._beginRow(s, g.rowheight || "auto", g.valign);
@@ -670,8 +673,17 @@
 			} else {
 				if (g.type == "password") {
 					u = "<div style='background: transparent;" + r + D + "'><input type='password' style='width: auto; height: auto; " + x + "' id='" + s + "'/></div>"
-				}
-			}
+				} else if (g.type === "formattedinput") {   
+				    // 181120_kmh formattedinput element 추가
+				    u = "<div style='background: transparent;" + r + D + "'>" +
+				            "<div style='width: auto; height: auto; " + x + "' id='" + s + "'>" + 
+				                "<input type='text' />" +
+    				    		"<div></div>" +
+    				    		"<div></div>" +
+				    		"</div>" + 
+		    		    "</div>";
+	            }
+			} 
 			if (g.type == "option" && g.component != "jqxDropDownList" && !isNaN(j)) {
 				var t = g.width;
 				if (t === undefined) {
@@ -735,6 +747,7 @@
 					}
 				}
 			}
+			
 			return B
 		},
 		_initTools: function (f, e) {
@@ -792,6 +805,9 @@
 					break;
 				case "maskedinput":
 				    this._initMaskedInputTool(g);
+				    break;
+				case "formattedinput":
+				    this._initFormattedInputTool(g);
 				    break;
 				}
 				if (b.visible === false) {
@@ -1244,7 +1260,7 @@
             } else {
                 let disabled = typeof obj.disabled === "undefined" ? false : obj.disabled;
                 let placeHolder = typeof obj.placeHolder === "undefined" ? "" : obj.placeHolder;
-                let width = isNaN(parseFloat(obj.height)) ? "200px" : obj.height;
+                let width = isNaN(parseFloat(obj.width)) ? "200px" : obj.height;
                 let height = isNaN(parseFloat(obj.height)) ? "25px" : obj.height;
                 let mask = typeof obj.mask === "undefined" ? "99999" : obj.mask;
                 let promptChar = typeof obj.promptChar === "undefined" ? "_" : obj.promptChar;
@@ -1266,6 +1282,66 @@
                     "theme" : theme,
                     "textAlign" : textAlign,
                     "value" : value
+                });
+            }
+		},
+		// 181119_kmh Component 초기화 설정
+		_initFormattedInputTool: function(seq) {
+		    let _this = this;
+            let formId = this.host.attr("id");
+            let id = formId + "_el_" + seq;
+            let obj = _this._getTool(seq);
+            let elem = _this.host.find("#" + id);
+            
+            if (obj.init) {
+                obj.init(elem);
+            } else {
+                let disabled = typeof obj.disabled === "undefined" ? false : obj.disabled; 
+                let decimalNotation = typeof obj.decimalNotation === "undefined" ? "default" : obj.decimalNotation;        
+                let dropDown = typeof obj.dropDown === "undefined" ? false : obj.dropDown;
+                let dropDownWidth = typeof obj.dropDownWidth === "undefined" ? null : obj.dropDownWidth; 
+                let width = isNaN(parseFloat(obj.width)) ? 200 : obj.width;
+                let height = isNaN(parseFloat(obj.height)) ? 25 : obj.height;
+                let min = typeof obj.min === "undefined" ? "-9223372036854775808" : obj.min; 
+                let max = typeof obj.max === "undefined" ? "9223372036854775807" : obj.max;
+                let placeHolder = typeof obj.placeHolder === "undefined" ? "" : obj.placeHolder;
+                let popupZIndex = typeof obj.popupZIndex === "undefined" ? 20000 : obj.popupZIndex;
+                let roundedCorners = typeof obj.roundedCorners === "undefined" ? true : obj.roundedCorners;
+                let rtl = typeof obj.rtl === "undefined" ? false : obj.rtl; 
+                let radix = typeof obj.radix === "undefined" ? 10 : obj.radix;
+                let spinButtons = typeof obj.spinButtons === "undefined" ? true : obj.spinButtons;
+                let spinButtonsStep = typeof obj.spinButtonsStep === "undefined" ? 1 : obj.spinButtonsStep;
+                let template = typeof obj.template === "undefined" ? "" : obj.template;
+                let theme = typeof obj.theme === "undefined" ? "" : obj.theme; 
+                let upperCase = typeof obj.upperCase === "undefined" ? "" : obj.upperCase;
+                let value = typeof obj.value === "undefined" ? "0" : obj.value;
+                
+                elem.jqxFormattedInput({
+                    "disabled" : disabled,
+                    "decimalNotation" : decimalNotation,
+                    "dropDown" : dropDown,
+                    "dropDownWidth" : dropDownWidth,
+                    "height" : height,
+                    "min" : min,
+                    "max" : max,
+                    "placeHolder" : placeHolder,
+                    "popupZIndex" : popupZIndex,
+                    "roundedCorners" : roundedCorners,
+                    "rtl" : rtl,
+                    "radix" : radix,
+                    "spinButtons" : spinButtons,
+                    "spinButtonsStep" : spinButtonsStep,
+                    "template" : template,
+                    "theme" : theme,
+                    "upperCase" : upperCase,
+                    "value" : value,
+                    "width" : width,
+
+                    "changeType" : null,
+                    "hint" : true,
+                    "_opened" : false,
+                    "$popup" : a("<ul></ul>"),
+                    "item" : '<li><a href="#"></a></li>',
                 });
             }
 		},

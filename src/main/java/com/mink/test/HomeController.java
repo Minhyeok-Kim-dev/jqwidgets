@@ -36,6 +36,9 @@ public class HomeController {
 		case 3:
 			page += "jqxmaskedinput";
 			break;
+		case 4:
+			page += "jqxformattedinput";
+			break;
 		}
 		
 		return page;

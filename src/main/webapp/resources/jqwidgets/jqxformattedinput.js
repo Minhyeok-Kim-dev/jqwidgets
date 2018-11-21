@@ -77,7 +77,7 @@ License: https://jqwidgets.com/license/
 					}
 					a(this.input).addClass(this.toThemeProperty("jqx-input-widget"))
 				}
-				this.element.style = ""
+				this.element.style = "";
 			}
 			if (e.baseHost) {
 				e.host = e.baseHost;
