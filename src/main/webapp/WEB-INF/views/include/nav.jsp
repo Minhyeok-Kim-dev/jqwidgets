@@ -88,4 +88,9 @@
 	</div>
 	<div>
 	</div>
+	<div>
+		jqxNumberInput
+	</div>
+	<div>
+	</div>
 </div>

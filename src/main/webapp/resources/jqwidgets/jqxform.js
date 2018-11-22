@@ -785,6 +785,7 @@
 					this._initOptionToolDropDownList(g);
 					break;
 				case "number":
+				case "numberinput":
 					this._initNumberTool(g);
 					break;
 				case "boolean":
@@ -913,21 +914,70 @@
 		},
 		_initNumberTool: function (seq) {
 		    let _this = this;
-			let id = "el_" + seq;
+		    let formId = this.host.attr("id");
+            let id = formId + "_el_" + seq;
 			let obj = _this._getTool(seq);
 			let elem = this.host.find("#" + id);
 			
 			if (obj.init) {
 			    obj.init(elem);
 			} else {
-			    let width = isNaN(parseFloat(obj.width)) ? "auto" : obj.width;
-				let height = isNaN(parseFloat(obj.height)) ? "30px" : obj.height;
+			    let width = isNaN(parseFloat(obj.width)) ? 200 : obj.width;
+				let height = isNaN(parseFloat(obj.height)) ? 25 : obj.height;
+				let allowNull = typeof obj.allowNull === "undefined" ? true : obj.allowNull;
+				let decimal = typeof obj.decimal === "undefined" ? 0 : obj.decimal;
+				let disabled = typeof obj.disabled === "undefined" ? false : obj.disabled;
+				let decimalDigits = typeof obj.decimalDigits === "undefined" ? 2 : obj.decimalDigits;
+				let decimalSeparator = typeof obj.decimalSeparator === "undefined" ? "." : obj.decimalSeparator;
+				let digits = typeof obj.digits === "undefined" ? 8 : obj.digits;
+				let groupSeparator = typeof obj.groupSeparator === "undefined" ? "," : obj.groupSeparator;
+				let groupSize = typeof obj.groupSize === "undefined" ? 3 : obj.groupSize;
+				let inputMode = typeof obj.inputMode === "undefined" ? "advanced" : obj.inputMode;
+				let min = typeof obj.min === "undefined" ? -99999999 : obj.min;
+				let max = typeof obj.max == "undefined" ? 99999999 : obj.max;
+				let negativeSymbol = typeof obj.negativeSymbol === "undefined" ? "-" : obj.negativeSymbol;
+				let placeHolder = typeof obj.placeHolder === "undefined" ? "" : obj.placeHolder;
+				let promptChar = typeof obj.promptChar === "undefined" ? "_" : obj.promptChar;
+				let rtl = typeof obj.rtl === "undefined" ? false : obj.rtl;
+				let spinButtons = typeof obj.spinButtons === "undefined" ? false : obj.spinButtons;
+				let readOnly = typeof obj.readOnly === "undefined" ? false : obj.readOnly;
+				let spinMode = typeof obj.spinMode === "undefined" ? "advanced" : obj.spinMode;
+				let spinButtonsWidth = typeof obj.spinButtonsWidth === "undefined" ? 18 : obj.spinButtonsWidth;
+				let spinButtonsStep = typeof obj.spinButtonsStep === "undefined" ? 1 : obj.spinButtonsStep;
+				let symbol = typeof obj.symbol === "undefined" ? "" : obj.symbol;
+				let symbolPosition = typeof obj.symbolPosition === "undefined" ? "left" : obj.symbolPosition;
+				let textAlign = typeof obj.textAlign === "undefined" ? "right" : obj.textAlign;
+				let template = typeof obj.template === "undefined" ? "default" : obj.template;
+				let theme = typeof obj.theme === "undefined" ? "" : obj.theme;
 				
 				elem.jqxNumberInput({
-					"theme" : _this.theme,
+				    "allowNull" : allowNull,
+				    "decimal" : decimal,
+				    "disabled" : disabled,
+				    "decimalDigits" : decimalDigits,
+				    "decimalSeparator" : decimalSeparator,
+				    "digits" : digits,
+				    "groupSeparator" : groupSeparator,
+				    "groupSize" : groupSize,
+				    "height" : height,
+				    "inputMode" : inputMode,
+				    "min" : min,
+				    "max" : max,
+				    "negativeSymbol" : negativeSymbol,
+				    "placeHolder" : placeHolder,
+				    "promptChar" : promptChar,
+				    "rtl" : rtl,
+				    "readOnly" : readOnly,
+				    "spinMode" : spinMode,
+				    "spinButtons" : spinButtons,
+				    "spinButtonsWidth": spinButtonsWidth,
+				    "spinButtonsStep" : spinButtonsStep,
+				    "symbol" : symbol,
+				    "symbolPosition" : symbolPosition,
+				    "textAlign" : textAlign,
+				    "template" : template,
+				    "theme" : theme,
 					"width" : width,
-					"height" : height,
-					"inputMode" : "simple"
 				})
 			}
 			elem.on("change", function (i) {

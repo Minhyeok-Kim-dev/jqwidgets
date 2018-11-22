@@ -150,36 +150,38 @@ let disabled = txtDisabled.jqxMaskedInput("disabled");
 					<div class="documentation-option-description property-content" style="display: none;">
 						<!-- Demo -->
 						<h4>Demo</h4>
-						<div id="jqxinputForm_change"></div>
-						<div id="log_change"></div>
+						<div id="jqxinputForm_event_change"></div>
+						<div id="log_event_change"></div>
 						<!-- Description -->
 						<h4>Description</h4>
 						<p>값이 변경된 경우 trigger됩니다.</p>
 						<h4>Code Example</h4>
 <pre><code>
 /* 초기설정 */
-let template_change = [{
-    "bind" : "txtChange",
-    "name" : "txtChange",
-	"type" : "password",	
-	"width" : "250px"
+let template_event_change = [{
+    "bind" : "txtEventChange",
+    "name" : "txtEventChange",
+	"type" : "password"	
 }];
 
-$("#jqxinputForm_change").jqxForm({
-  	"template" : template_change
+$("#jqxinputForm_event_change").jqxForm({
+  	"template" : template_event_change
 });
 
 
 /* 이벤트 설정 */
-let txtChange = $("#jqxinputForm_change").jqxForm("getComponentByName", "txtChange"); 
-txtChange.on("change", function(event) {
-   	let type = event.args.type;		// 어디로부터 값이 입력되었는지 (keyboard, mouse or null) 
-   	let value = txtChange.val();	// inputBox에 입력된 값
-   
-   	$("#log_change").html("type : " + type + " // value : " + value);
+let txtEventChange = $("#jqxinputForm_event_change").jqxForm("getComponentByName", "txtEventChange"); 
+txtEventChange.on("change", function(event) {
+	let args = event.args;
+	
+	if(args) {
+	   	let type = event.args.type;		// 어디로부터 값이 입력되었는지 (keyboard, mouse or null) 
+	   	let value = txtChange.val();	// inputBox에 입력된 값
+	   
+	   	$("#log_event_change").html("type : " + type + " // value : " + value);
+	}
 });
 </code></pre>
-						
                     </div>
                 </td>
             </tr>
@@ -207,35 +209,36 @@ txtChange.on("change", function(event) {
 					<div class="documentation-option-description property-content" style="display: none;">
 						<!-- Demo -->
 						<h4>Demo</h4>
-						<div id="jqxinputForm_render"></div>
+						<div id="jqxinputForm_method_render"></div>
 						<input type="button" id="btnRender" value="Render" />
 						<!-- Description -->
 						<h4>Description</h4>
 						<p>위젯을 렌더링합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>None</p>
+						<h4>Return Value</h4>
+						<p>None</p>
 						<h4>Code Example</h4>
 <pre><code>
 /* 초기설정 */
-let template_render = [{
-    "bind" : "txtRender",
-    "name" : "txtRender",
-	"type" : "password",	
-	"width" : "250px",	
-	"height" : "25px"
+let template_method_render = [{
+	"bind" : "txtMethodRender",
+	"name" : "txtMethodRender",
+	"type" : "password"	
 }];
 
 $("#jqxinputForm_render").jqxForm({
-  	"template" : template_render
+  	"template" : template_method_render
 });
 
 
 /* 이벤트 설정 */
-let txtRender = $("#jqxinputForm_render").jqxForm("getComponentByName", "txtRender");
+let txtMethodRender = $("#jqxinputForm_method_render").jqxForm("getComponentByName", "txtMethodRender");
  
 $("#btnRender").on("click", function() {
-   	txtRender.jqxInput("render");
+   	txtMethodRender.jqxPasswordInput("render");
 });
 </code></pre>
-						
                     </div>
                 </td>
             </tr>

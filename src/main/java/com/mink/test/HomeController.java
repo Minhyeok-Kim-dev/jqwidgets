@@ -42,7 +42,9 @@ public class HomeController {
 		case 5:
 			page += "jqxcomplexinput";
 			break;
-			
+		case 6:
+			page += "jqxnumberinput";
+			break;
 		}
 		
 		return page;
