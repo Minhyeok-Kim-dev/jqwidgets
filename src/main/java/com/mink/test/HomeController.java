@@ -27,39 +27,49 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/reference", method = RequestMethod.POST)
-	public String reference(@RequestParam(name="type") String type) {
+	public String reference(@RequestParam(name="type") String type,
+			@RequestParam(name="container") String container) {
 		String page = "/reference/";
 		
-		switch(Integer.parseInt(type)) {
-		case 0:
-			page += "jqxinput";
-			break;
-		case 1:
-			page += "jqxpasswordinput";
-			break;
-		case 2:
-			page += "jqxdatetimeinput";
-			break;
-		case 3:
-			page += "jqxmaskedinput";
-			break;
-		case 4:
-			page += "jqxformattedinput";
-			break;
-		case 5:
-			page += "jqxcomplexinput";
-			break;
-		case 6:
-			page += "jqxnumberinput";
-			break;
+		if(container.equals("jqxForm")) {
+			page += "jqxForm/";
 			
-		// TODO : delete
-		case 7:
-			page += "jqxnumberinput";
-			break;
-		case 8:
-			page += "jqxresponsivepanel";
-			break;
+			switch(Integer.parseInt(type)) {
+			case 0:
+				page += "jqxinput";
+				break;
+			case 1:
+				page += "jqxpasswordinput";
+				break;
+			case 2:
+				page += "jqxdatetimeinput";
+				break;
+			case 3:
+				page += "jqxmaskedinput";
+				break;
+			case 4:
+				page += "jqxformattedinput";
+				break;
+			case 5:
+				page += "jqxcomplexinput";
+				break;
+			case 6:
+				page += "jqxnumberinput";
+				break;
+				
+				// TODO : delete
+			case 7:
+				page += "jqxnumberinput";
+				break;
+			}
+		} else if (container.equals("layout")) {
+			page += "layout/";
+			
+			switch(Integer.parseInt(type)) {
+			case 0:
+				page += "jqxresponsivepanel";
+				break;
+			}
 		}
 			
 		return page;

@@ -39,8 +39,12 @@
 		   	    "allowUnpin" : false,
 		   	    "items" : [{
 					"type" : "layoutPanel",
-			       	"title" : "Components",
-			       	"contentContainer" : "NavPanel"
+			       	"title" : "jqxForm",
+			       	"contentContainer" : "NavPanel_jqxForm"
+		   	    }, {
+		   	     	"type" : "layoutPanel",
+			       	"title" : "layout",
+			       	"contentContainer" : "NavPanel_layout"
 		   	    }]
 		   	}, {
 				"type" : "layoutGroup",
@@ -78,8 +82,11 @@
 <body>
 	<div id="jqxDockingLayout">
 		<!-- tabbed group -->
-		<div data-container="NavPanel">
-			<%@ include file="/WEB-INF/views/include/nav.jsp" %>
+		<div data-container="NavPanel_jqxForm">
+			<%@ include file="/WEB-INF/views/include/nav_jqxForm.jsp" %>
+		</div>
+		<div data-container="NavPanel_layout">
+			<%@ include file="/WEB-INF/views/include/nav_layout.jsp" %>
 		</div>
 		<!-- document group -->
 		<div data-container="DemoPanel">
