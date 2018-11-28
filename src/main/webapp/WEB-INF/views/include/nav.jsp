@@ -93,4 +93,17 @@
 	</div>
 	<div>
 	</div>
+	<div>
+		jqxGrid
+	</div>
+	<div>
+		<ul>
+			<li><a href="/widgets/jqxgrid_test">test</a></li>
+		</ul>
+	</div>
+	<div>
+		jqxResponsivePanel
+	</div>
+	<div>
+	</div>
 </div>

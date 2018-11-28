@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(value="/")
 public class HomeController {
+	// 181123_kmh for test
+	@RequestMapping(value = "/template", method = RequestMethod.GET)
+	public String template(Locale locale, Model model) {
+		return "responsive_layout";
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		return "main";
@@ -45,8 +52,22 @@ public class HomeController {
 		case 6:
 			page += "jqxnumberinput";
 			break;
+			
+		// TODO : delete
+		case 7:
+			page += "jqxnumberinput";
+			break;
+		case 8:
+			page += "jqxresponsivepanel";
+			break;
 		}
-		
+			
+		return page;
+	}
+	
+	@RequestMapping(value = "/jqxResponsivePanel/{path}", method = RequestMethod.GET)
+	public String jqxresponsivepanel(@PathVariable String path) {
+		String page = "/reference/jqxresponsivepanel/" + path;
 		return page;
 	}
 	

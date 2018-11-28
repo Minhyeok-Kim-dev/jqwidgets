@@ -26,5 +26,11 @@ public class WidgetsController {
 	public String jqxinput_getter_setter() {
 		return "/widgets/jqxinput/jqxinput_getter_setter";
 	}
+
 	
+	
+	@RequestMapping(value = "/jqxgrid_test", method = RequestMethod.POST)
+	public String jqxgrid_test() {
+		return "/widgets/jqxgrid/jqxgrid_test";
+	}
 }
