@@ -99,4 +99,9 @@
 	</div>
 	<div>
 	</div>
+	<div>
+		jqxRepeatButton
+	</div>
+	<div>
+	</div>
 </div>

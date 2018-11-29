@@ -11,7 +11,6 @@
 <script src="<c:url value="/resources/jqwidgets/documentation.js"/>"></script>
 <script src="<c:url value="/resources/jqwidgets/jqxcore.js"/>"></script>
 <script src="<c:url value="/resources/jqwidgets/jqxbuttons.js"/>"></script>
-<script src="<c:url value="/resources/jqwidgets/jqxprogressbar.js"/>"></script>
 <script src="<c:url value="/resources/jqwidgets/jqxform.js"/>"></script>
 
 <script>
