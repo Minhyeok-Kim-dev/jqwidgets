@@ -95,11 +95,8 @@
 	<div>
 	</div>
 	<div>
-		jqxGrid
+		jqxButton
 	</div>
 	<div>
-		<ul>
-			<li><a href="/widgets/jqxgrid_test">test</a></li>
-		</ul>
 	</div>
 </div>

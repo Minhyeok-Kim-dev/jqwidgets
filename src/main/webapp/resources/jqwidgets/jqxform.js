@@ -809,6 +809,9 @@
 				case "button":
 					this._initButtonTool(g);
 					break;
+				case "repeatButton":
+				    this._initRepeatButtonTool(g);
+				    break;
 				case "custom":
 					this._initCustomTool(g);
 					break;
@@ -1111,28 +1114,103 @@
 		},
 		_initButtonTool: function (seq) {
 			let _this = this;
-			let id = "el_" + seq;
-			let obj = _this._getTool(seq);
-			let elem = _this.host.find("#" + id);
+			let formId = this.host.attr("id");
+            let id = formId + "_el_" + seq;
+            let obj = _this._getTool(seq);
+            let elem = this.host.find("#" + id);
 			
 			if (obj.init) {
 			    obj.init(elem);
 			} else {
-				let width = isNaN(parseFloat(obj.width)) ? "auto" : obj.width;
-				let height = isNaN(parseFloat(obj.height)) ? "30px" : obj.height;
+			    let disabled = typeof obj.disabled === "undefined" ? false : obj.disabled;
+                let height = isNaN(parseFloat(obj.height)) ? null : obj.height;
+				let imgSrc = typeof obj.imgSrc === "undefined" ? "" : obj.imgSrc;
+				let imgWidth = typeof obj.imgWidth === "undefined" ? 16 : obj.imgWidth;
+				let imgHeight = typeof obj.imgHeight === "undefined" ? 16 : obj.imgHeight;
+				let imgPosition = typeof obj.imgPosition === "undefined" ? "center" : obj.imgPosition;
+				let roundedCorners = typeof obj.roundedCorners === "undefined" ? "all" : obj.roundedCorners;
+				let rtl = typeof obj.rtl === "undefined" ? false : obj.rtl;
+				let textPosition = typeof obj.textPosition === "undefined" ? "" : obj.textPosition;
+				let textImageRelation = typeof obj.textImageRelation === "undefined" ? "overlay" : obj.textImageRelation; 
+				let theme = typeof obj.theme === "undefined" ? "" : obj.theme;
+				let template = typeof obj.template === "undefined" ? "default" : obj.template;
+				let width = isNaN(parseFloat(obj.width)) ? null : obj.width;
+				let value = typeof obj.value === "undefined" ? null : obj.value;
+				let text = typeof obj.text === "undefined" ? "Button" : obj.text;
 				
 				elem.jqxButton({
-					"theme" : _this.theme,
+				    "disabled" : disabled,
+				    "height" : height,
+				    "imgSrc" : imgSrc,
+				    "imgWidth" : imgWidth,
+				    "imgHeight" : imgHeight,
+				    "imgPosition" : imgPosition,
+				    "roundedCorners" : roundedCorners,
+				    "rtl" : rtl,
+				    "textPosition" : textPosition,
+				    "textImageRelation" : textImageRelation,
+					"theme" : theme,
+					"template" : template,
 					"width" : width,
-					"height" : height
+					"value" : value
 				});
 				
-				elem.val(obj.text === undefined ? "Button" : obj.text);
+				elem.val(obj.text === undefined ? "Button" : value);
 			}
 			
 			_this.host.find("#" + id).on("click", function (event) {
 			    _this._onButtonClick(elem, obj);
 			});
+		},
+		_initRepeatButtonTool: function(seq) {
+		    let _this = this;
+            let formId = this.host.attr("id");
+            let id = formId + "_el_" + seq;
+            let obj = _this._getTool(seq);
+            let elem = this.host.find("#" + id);
+            
+            if (obj.init) {
+                obj.init(elem);
+            } else {
+                let delay = typeof obj.delay === "undefined" ? 50 : obj.delay;
+                
+                let disabled = typeof obj.disabled === "undefined" ? false : obj.disabled;
+                let height = isNaN(parseFloat(obj.height)) ? null : obj.height;
+                let imgSrc = typeof obj.imgSrc === "undefined" ? "" : obj.imgSrc;
+                let imgWidth = typeof obj.imgWidth === "undefined" ? 16 : obj.imgWidth;
+                let imgHeight = typeof obj.imgHeight === "undefined" ? 16 : obj.imgHeight;
+                let imgPosition = typeof obj.imgPosition === "undefined" ? "center" : obj.imgPosition;
+                let roundedCorners = typeof obj.roundedCorners === "undefined" ? "all" : obj.roundedCorners;
+                let rtl = typeof obj.rtl === "undefined" ? false : obj.rtl;
+                let textPosition = typeof obj.textPosition === "undefined" ? "" : obj.textPosition;
+                let textImageRelation = typeof obj.textImageRelation === "undefined" ? "overlay" : obj.textImageRelation; 
+                let theme = typeof obj.theme === "undefined" ? "" : obj.theme;
+                let template = typeof obj.template === "undefined" ? "default" : obj.template;
+                let width = isNaN(parseFloat(obj.width)) ? null : obj.width;
+                let value = typeof obj.value === "undefined" ? null : obj.value;
+                let text = typeof obj.text === "undefined" ? "Button" : obj.text;
+                
+                elem.jqxRepeatButton({
+                    "delay" : delay,
+                    
+                    "disabled" : disabled,
+                    "height" : height,
+                    "imgSrc" : imgSrc,
+                    "imgWidth" : imgWidth,
+                    "imgHeight" : imgHeight,
+                    "imgPosition" : imgPosition,
+                    "roundedCorners" : roundedCorners,
+                    "rtl" : rtl,
+                    "textPosition" : textPosition,
+                    "textImageRelation" : textImageRelation,
+                    "theme" : theme,
+                    "template" : template,
+                    "width" : width,
+                    "value" : value
+                });
+                
+                elem.val(obj.text === undefined ? "Button" : value);
+            }
 		},
 		_initPasswordTool: function (seq) {
 		    let _this = this;

@@ -56,10 +56,8 @@ public class HomeController {
 			case 6:
 				page += "jqxnumberinput";
 				break;
-				
-				// TODO : delete
 			case 7:
-				page += "jqxnumberinput";
+				page += "jqxbutton";
 				break;
 			}
 		} else if (container.equals("layout")) {
