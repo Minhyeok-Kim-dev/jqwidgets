@@ -818,6 +818,8 @@
 				case "linkButton":
 				    this._initLinkButtonTool(g);
 				    break;
+				    
+				    
 				case "custom":
 					this._initCustomTool(g);
 					break;
@@ -991,42 +993,6 @@
 			}
 			elem.on("change", function (i) {
 			    _this._onChangeHandler(i)
-			})
-		},
-		_initBooleanTool: function (seq) {
-			let _this = this;
-			let id = "el_" + seq;
-			let obj = _this._getTool(seq);
-			let elem = this.host.find("#" + id);
-			
-			if (obj.init) {
-			    obj.init(elem);
-			} else {
-				let width = isNaN(parseFloat(obj.width)) ? "auto" : obj.width;
-				let height = isNaN(parseFloat(obj.height)) ? "30px" : obj.height;
-				let isThreeState = obj.isThreeState == true;
-				
-				if (obj.component === undefined || obj.component == "jqxCheckBox") {
-				    elem.jqxCheckBox({
-						"theme" : _this.theme,
-						"width" : width,
-						"height" : height,
-						"hasThreeStates" : isThreeState
-					});
-				} else {
-					return;
-				}
-			}
-			
-			elem.on("change", function (event) {
-			    _this._onChangeHandler(event);
-			});
-			
-			let labelElem = _this.host.find("#label_" + id);
-			
-			labelElem.on("mousedown", function (evnet) {
-				let hasValue = _this.host.find("#" + id).val();
-				_this.host.find("#" + id).val(!hasValue);
 			})
 		},
 		_initTextTool: function (seq) {
@@ -1331,6 +1297,69 @@
                     }
                 });
             }
+        },
+        // checkbox (기존 jqxform.js작명 그대로 사용)
+        _initBooleanTool: function (seq) {
+            let _this = this;
+            let formId = this.host.attr("id");
+            let id = formId + "_el_" + seq;
+            let obj = _this._getTool(seq);
+            let elem = this.host.find("#" + id);
+            
+            if (obj.init) {
+                obj.init(elem);
+            } else {
+                let animationShowDelay = typeof obj.animationShowDelay === "undefined" ? 300 : obj.animationShowDelay;
+                let animationHideDelay = typeof obj.animationHideDelay === "undefined" ? 300 : obj.animationHideDelay;
+                let boxSize = typeof obj.boxSize === "undefined" ? 16 : obj.boxSize;
+                let checked = typeof obj.checked === "undefined" ? false : obj.checked;
+                let disabled = typeof obj.disabled === "undefined" ? false : obj.disabled;
+                let enableContainerClick = typeof obj.enableContainerClick === "undefined" ? true : obj.enableContainerClick;
+                let groupName = typeof obj.groupName === "undefined" ? "" : obj.groupName;
+                let height = isNaN(parseFloat(obj.height)) ? 25 : obj.height;
+                let hasThreeStates = typeof obj.hasThreeStates === "undefined" ? false : obj.hasThreeStates; 
+                let locked = typeof obj.locked === "undefined" ? false : obj.locked;
+                let rtl = typeof obj.rtl === "undefined" ? false : obj.rtl;
+                let theme = typeof obj.theme === "undefined" ? "" : obj.theme;
+                
+                let width = isNaN(parseFloat(obj.width)) ? 50 : obj.width;
+                
+                if (obj.component === undefined || obj.component == "jqxCheckBox") {
+                    elem.jqxCheckBox({
+                        "animationShowDelay" : animationShowDelay,
+                        "animationHideDelay" : animationHideDelay,
+                        "boxSize" : boxSize,
+                        "checked" : checked,
+                        "disabled" : disabled,
+                        "enableContainerClick" : enableContainerClick,
+                        "groupName" : groupName,
+                        "height" : height,
+                        "hasThreeStates" : hasThreeStates,
+                        "locked" : locked,
+                        "rtl" : rtl,
+                        "theme" : theme,
+                        "width" : width,
+                    });
+                } else {
+                    return;
+                }
+            }
+            
+            elem.on("change", function (event) {
+                _this._onChangeHandler(event);
+            });
+            
+            let labelElem = _this.host.find("#label_" + id);
+            
+            // label 선택시 check 처리
+            labelElem.on("mousedown", function (evnet) {
+                let enableContainerClick = typeof obj.enableContainerClick === "undefined" ? true : obj.enableContainerClick;
+                
+                if(enableContainerClick) {
+                    let hasValue = _this.host.find("#" + id).val();
+                    _this.host.find("#" + id).val(!hasValue);
+                }
+            })
         },
 		_initPasswordTool: function (seq) {
 		    let _this = this;

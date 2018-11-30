@@ -114,4 +114,9 @@
 	</div>
 	<div>
 	</div>
+	<div>
+		jqxCheckBox
+	</div>
+	<div>
+	</div>
 </div>
