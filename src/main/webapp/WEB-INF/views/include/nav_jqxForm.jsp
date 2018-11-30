@@ -109,4 +109,9 @@
 	</div>
 	<div>
 	</div>
+	<div>
+		jqxLinkButton
+	</div>
+	<div>
+	</div>
 </div>

@@ -815,6 +815,9 @@
 				case "toggleButton":
 				    this._initToggleButtonTool(g);
 				    break;
+				case "linkButton":
+				    this._initLinkButtonTool(g);
+				    break;
 				case "custom":
 					this._initCustomTool(g);
 					break;
@@ -1162,7 +1165,7 @@
 			}
 			
 			/*
-			 _this.host.find("#" + id).on("click", function (event) {
+			_this.host.find("#" + id).on("click", function (event) {
 			    _this._onButtonClick(elem, obj);
 			});
 			*/
@@ -1267,6 +1270,68 @@
                 elem.val(obj.text === undefined ? "Button" : value);
             }
 		},
+		// LinkButton은 기본Button 사용. (default click event 정의)
+		// - href 속성 값 없는 경우 일반버튼 click event 적용
+		_initLinkButtonTool: function(seq) {
+            let _this = this;
+            let formId = this.host.attr("id");
+            let id = formId + "_el_" + seq;
+            let obj = _this._getTool(seq);
+            let elem = this.host.find("#" + id);
+            
+            if (obj.init) {
+                obj.init(elem);
+            } else {
+                let href = typeof obj.href === "undefined" ? null : obj.href;
+                let target = typeof obj.target === "undefined" ? "_blank" : obj.target;
+                
+                let disabled = typeof obj.disabled === "undefined" ? false : obj.disabled;
+                let height = isNaN(parseFloat(obj.height)) ? null : obj.height;
+                let imgSrc = typeof obj.imgSrc === "undefined" ? "" : obj.imgSrc;
+                let imgWidth = typeof obj.imgWidth === "undefined" ? 16 : obj.imgWidth;
+                let imgHeight = typeof obj.imgHeight === "undefined" ? 16 : obj.imgHeight;
+                let imgPosition = typeof obj.imgPosition === "undefined" ? "center" : obj.imgPosition;
+                let roundedCorners = typeof obj.roundedCorners === "undefined" ? "all" : obj.roundedCorners;
+                let rtl = typeof obj.rtl === "undefined" ? false : obj.rtl;
+                let textPosition = typeof obj.textPosition === "undefined" ? "" : obj.textPosition;
+                let textImageRelation = typeof obj.textImageRelation === "undefined" ? "overlay" : obj.textImageRelation; 
+                let theme = typeof obj.theme === "undefined" ? "" : obj.theme;
+                let template = typeof obj.template === "undefined" ? "default" : obj.template;
+                let width = isNaN(parseFloat(obj.width)) ? null : obj.width;
+                let value = typeof obj.value === "undefined" ? null : obj.value;
+                let text = typeof obj.text === "undefined" ? "Button" : obj.text;
+                
+                elem.jqxButton({
+                    "disabled" : disabled,
+                    "height" : height,
+                    "imgSrc" : imgSrc,
+                    "imgWidth" : imgWidth,
+                    "imgHeight" : imgHeight,
+                    "imgPosition" : imgPosition,
+                    "roundedCorners" : roundedCorners,
+                    "rtl" : rtl,
+                    "textPosition" : textPosition,
+                    "textImageRelation" : textImageRelation,
+                    "theme" : theme,
+                    "template" : template,
+                    "width" : width,
+                    "value" : value
+                });
+                
+                elem.val(obj.text === undefined ? "Button" : value);
+                
+                // click event
+                _this.host.find("#" + id).on("click", function (event) {
+                    if(href === "") {
+                        _this._onButtonClick(elem, obj);
+                    } 
+                    else {
+                        window.open(href, target);
+                        return;
+                    }
+                });
+            }
+        },
 		_initPasswordTool: function (seq) {
 		    let _this = this;
 		    let formId = this.host.attr("id");
