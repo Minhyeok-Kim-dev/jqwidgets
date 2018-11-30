@@ -62,6 +62,9 @@ public class HomeController {
 			case 8:
 				page += "jqxrepeatbutton";
 				break;
+			case 9:
+				page += "jqxtogglebutton";
+				break;
 			}
 		} else if (container.equals("layout")) {
 			page += "layout/";

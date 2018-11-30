@@ -104,4 +104,9 @@
 	</div>
 	<div>
 	</div>
+	<div>
+		jqxToggleButton
+	</div>
+	<div>
+	</div>
 </div>

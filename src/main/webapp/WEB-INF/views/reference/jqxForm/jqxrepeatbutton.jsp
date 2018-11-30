@@ -145,3 +145,11 @@ btnDelay.on("click", function(){
 		</tbody>
 	</table>
 </div>
+<div id="events">
+	<h2 class="documentation-top-header">Events</h2>
+	<h4>jqxButton의 event를 사용할 수 있습니다.</h4>
+</div>
+<div id="methods">
+	<h2 class="documentation-top-header">Methods</h2>
+	<h4>jqxButton의 method를 사용할 수 있습니다.</h4>
+</div>
