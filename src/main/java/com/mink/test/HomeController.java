@@ -71,6 +71,9 @@ public class HomeController {
 			case 11:
 				page += "jqxcheckbox";
 				break;
+			case 12:
+				page += "jqxradiobutton";
+				break;
 			}
 		} else if (container.equals("layout")) {
 			page += "layout/";

@@ -119,4 +119,9 @@
 	</div>
 	<div>
 	</div>
+	<div>
+		jqxRadioButton
+	</div>
+	<div>
+	</div>
 </div>

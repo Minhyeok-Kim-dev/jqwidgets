@@ -70,6 +70,7 @@
 				return
 			}
 			var c = this._getValue();
+			
 			if (this._prevValue && JSON.stringify(c) == JSON.stringify(this._prevValue)) {
 				return
 			}
@@ -152,7 +153,9 @@
 			var d = [];
 			for (var h = 0; h < this.template.length; h++) {
 				var k = this.template[h];
-				var l = "el_" + h;
+				let formId = this.host.attr("id");  // 181205_kmh      
+				var l = formId + "_el_" + h;
+				
 				if (a.isArray(k.columns)) {
 					for (var g = 0; g < k.columns.length; g++) {
 						var f = k.columns[g];
@@ -302,6 +305,9 @@
 			for (var c = 0; c < b.options.length; c++) {
 				var e = f + "_option_" + c;
 				var d = this.host.find("#" + e);
+				
+				//alert("_radioGroupGetValue : " + d.attr("id"));
+				
 				if (d.length > 0) {
 					var g = d.jqxRadioButton("val");
 					if (g == true) {
@@ -774,11 +780,12 @@
 				case "color":
 					this._initColorTool(g);
 					break;
+				// radio button
 				case "option":
 					if (b.component == "jqxDropDownList") {
 						this._initOptionToolDropDownList(g)
 					} else {
-						this._initOptionTool(g)
+						this._initOptionTool(g);
 					}
 					break;
 				case "dropdownlist":
@@ -861,7 +868,87 @@
 				break
 			}
 		},
-		_initOptionTool: function (h) {
+		// TODO : 여기부터
+		_initOptionTool: function (seq) {
+		    let _this = this;
+            let formId = this.host.attr("id");
+            let id = formId + "_el_" + seq;
+            let obj = _this._getTool(seq);
+            
+            
+            for(let i = 0; i < obj.options.length; i++) {
+                let optionId = id + "_option_" + i;
+                let elem = _this.host.find("#" + optionId);
+                
+                if(elem.length > 0) {
+                    let animationShowDelay = typeof obj.animationShowDelay === "undefined" ? 300 : obj.animationShowDelay;
+                    let animationHideDelay = typeof obj.animationHideDelay === "undefined" ? 300 : obj.animationHideDelay;
+                    let boxSize = typeof obj.boxSize === "undefined" ? "16px" : obj.boxSize;
+                    let checked = typeof obj.checked === "undefined" ? false : obj.checked;
+                    let disabled = typeof obj.disabled === "undefined" ? false : obj.disabled;
+                    let enableContainerClick = typeof obj.enableContainerClick === "undefined" ? true : obj.enableContainerClick;
+                    let groupName = typeof obj.groupName === "undefined" ? "" : obj.groupName;
+                    let hasThreeStates = typeof obj.hasThreeStates === "undefined" ? false : obj.hasThreeStates;
+                    let height = typeof obj.height === "undefined" ? null : obj.height;
+                    let rtl = typeof obj.rtl === "undefined" ? false : obj.rtl;
+                    let theme = typeof obj.theme === "undefined" ? "" : obj.theme;
+                    let width = typeof obj.width === "undefined" ? 25 : obj.width;
+                    
+                    elem.jqxRadioButton({
+                        "animationShowDelay" : animationShowDelay,
+                        "animationHideDelay" : animationHideDelay,
+                        "boxSize" : boxSize,
+                        "checked" : checked,
+                        "disabled" : disabled,
+                        "enableContainerClick" : enableContainerClick,
+                        "groupName" : groupName,
+                        //"groupName" : "group_" + seq
+                        "hasThreeStates" : hasThreeStates,
+                        "height" : height,
+                        "rtl" : rtl,
+                        "theme" : theme,
+                        "width" : width,
+                        
+                        "events" : ["checked", "unchecked", "indeterminate", "change"]
+                    });
+                    
+                    // TODO : 181203_kmh 이벤트작업부터
+                    /*
+                    elem.on("checked", function () {
+                        alert("hi");
+                        
+                        if (!this.isInitialized) {
+                            return
+                        }
+                        var e = new a.Event("checked");
+                        e.args = {
+                            //name: d.name,
+                            //text: c.val()
+                        };
+                        e.owner = this;
+                        var b = this.host.trigger(e);
+                        return b
+                    });
+                    */
+                    
+                    //alert(JSON.stringify(events));
+                    
+                    elem.on("change", function(event) {
+                        _this._onChangeHandler(event);
+                    });
+                }
+                
+                
+                
+                let labelElem = _this.host.find("#label_" + optionId);
+                labelElem.data("el", elem);
+                labelElem.on("mousedown", function(e) {
+                    let radioElem = a(this).data("el");
+                    radioElem.jqxRadioButton("toggle");
+                });
+            }
+            
+		    /*
 			var b = this;
 			var j = "el_" + h;
 			var c = b._getTool(h);
@@ -869,6 +956,8 @@
 				var g = j + "_option_" + d;
 				var e = b.host.find("#" + g);
 				if (e.length > 0) {
+				    let animationShowDelay = typeof obj.animationShowDelay === "undefined" ? 300 : obj.animationShowDelay;
+				    
 					e.jqxRadioButton({
 						width: 25,
 						theme: b.theme,
@@ -884,6 +973,7 @@
 					i.jqxRadioButton("toggle")
 				})
 			}
+			*/
 		},
 		_initOptionToolDropDownList: function (seq) {
 			var _this = this;
@@ -1041,7 +1131,6 @@
 					"popupZIndex" : popupZIndex,
 					"renderer" : renderer,
 					"rtl" : rtl,
-					"events": ["select", "open", "close", "change"],
 				});
 			}
 			
@@ -1677,11 +1766,29 @@
                 });
             }
 		},
+		// 181206_kmh 
+		// - param : RadioButton component
+		// - return : option 객체를 반환
+		getRadioOptionsByComponent: function(component) {
+		    let options = new Array();
+		    
+		    // component 내 radiobutton영역 가져옴
+		    let radioElem = component.find(".jqx-radiobutton");
+
+	        for(let i = 0; i < radioElem.length; i++) {
+	            let option = component.find("#" + radioElem[i].id);
+	            
+	            options.push(option);
+	        }
+	        
+	        return options;
+		},
 		getComponentByName: function (c) {
 			if (!a.isArray(this.template)) {
 				return undefined
 			}
 			for (var d = 0; d < this.template.length; d++) {
+			    
 				if (this.template[d].name == c) {
 					return this._getComponentById(d)
 				}
@@ -1693,6 +1800,7 @@
 					}
 				}
 			}
+			
 			return undefined
 		},
 		getComponentNameById: function (id) {
@@ -1719,6 +1827,12 @@
 		_getComponentById: function (c) {
 		    let formId = this.host.attr("id");  // 181113_kmh
 			var b = this.host.find("#" + formId + "_el_" + c);
+
+			// 181206_kmh radioButton 객체 식별시 사용
+			if(!b.attr("id")) {
+			    b = this.host.find("#rowWrap_" + formId + "_el_" + c);
+			}
+			
 			return b
 		},
 		_getComponentLabelById: function (c) {

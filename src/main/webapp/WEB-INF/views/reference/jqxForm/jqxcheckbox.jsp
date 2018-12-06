@@ -1083,13 +1083,13 @@ let rtl = btnRtl.jqxCheckBox("rtl");
             <!-- theme -->
 			<tr>
 				<td class="documentation-option-type-click">
-					<span id="Span2">rtl</span>
+					<span id="Span2">theme</span>
 				</td>
 				<td>
-					<span>Boolean</span>
+					<span>String</span>
 				</td>
 				<td>
-					false
+					""
 				</td>
 			</tr>
 			<tr>
