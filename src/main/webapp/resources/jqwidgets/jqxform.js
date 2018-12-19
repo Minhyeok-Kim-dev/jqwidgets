@@ -825,6 +825,10 @@
 				case "linkButton":
 				    this._initLinkButtonTool(g);
 				    break;
+				case "switchButton":
+					this._initSwitchButtonTool(g);
+					break;
+				    
 				    
 				    
 				case "custom":
@@ -1385,6 +1389,52 @@
                         return;
                     }
                 });
+            }
+        },
+        _initSwitchButtonTool: function(seq) {
+        	let _this = this;
+            let formId = this.host.attr("id");
+            let id = formId + "_el_" + seq;
+            let obj = _this._getTool(seq);
+            let elem = this.host.find("#" + id);
+            
+            if (obj.init) {
+                obj.init(elem);
+            } else {
+            	let checked = typeof obj.checked === "undefined" ? false : obj.checked;
+            	let disabled = typeof obj.disabled === "undefined" ? false : obj.disabled;
+            	let height = typeof obj.height === "undefined" ? 30 : obj.height;
+            	let orientation = typeof obj.orientation === "undefined" ? "horizontal" : obj.orientation;
+            	let onLabel = typeof obj.onLabel === "undefined" ? "On" : obj.onLabel;
+            	let offLabel = typeof obj.offLabel === "undefined" ? "Off" : obj.offLabel;
+            	let thumbSize = typeof obj.thumbSize === "undefined" ? "40%" : obj.thumbSize;
+            	let width = typeof obj.width === "undefined" ? 90 : obj.width;
+            	
+                elem.jqxSwitchButton({
+                	"checked" : checked,
+                	"disabled" : disabled,
+                	"height" : height,
+                	"orientation" : orientation,
+                	"onLabel" : onLabel,
+                	"offLabel" : offLabel,
+                	"thumbSize" : thumbSize,
+                	"width" : width,
+                });
+                
+                /*
+                elem.val(obj.text === undefined ? "Button" : value);
+                
+                // click event
+                _this.host.find("#" + id).on("click", function (event) {
+                    if(href === "") {
+                        _this._onButtonClick(elem, obj);
+                    } 
+                    else {
+                        window.open(href, target);
+                        return;
+                    }
+                });
+                */
             }
         },
         // checkbox (기존 jqxform.js작명 그대로 사용)

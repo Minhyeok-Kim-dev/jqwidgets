@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 @RequestMapping(value="/")
-public class HomeController {
+public class MainController {
 	// 181123_kmh for test
 	@RequestMapping(value = "/template", method = RequestMethod.GET)
 	public String template(Locale locale, Model model) {
@@ -73,6 +73,9 @@ public class HomeController {
 				break;
 			case 12:
 				page += "jqxradiobutton";
+				break;
+			case 13:
+				page += "jqxswitchbutton";
 				break;
 			}
 		} else if (container.equals("layout")) {

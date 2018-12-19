@@ -124,4 +124,9 @@
 	</div>
 	<div>
 	</div>
+	<div>
+		jqxSwitchButton
+	</div>
+	<div>
+	</div>
 </div>
