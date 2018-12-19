@@ -278,59 +278,6 @@
 		  	"template" : template_width
 		});
 		
-		let btnWidth = $("#jqxFormButtons_width").jqxForm("getComponentByName", "btnWidth");
-		
-		/* 
-		let options = $("#jqxFormButtons_width").jqxForm("getRadioOptionsByComponent", btnWidth);
-
-		
-		options[1].jqxRadioButton("check");
-		
-		btnWidth.on("change", function(event){
-		    let args = event.args;
-		    
-		    if(args) {
-		        //alert(args.value);
-		    }
-		});
-		
-		 
-		 $("#jqxFormButtons_width").on("formDataChange", function(event) {
-		    let args = event.args;
-		     
-			if(args) {
-		    	let newValue = args.value;
-		    	let previousValue = args.previousValue;
-		    	
-		    	for(var i in newValue) {
-		    	    if(i === "btnWidth") {
-			    	    let newInputValue = newValue[i];
-			    	    alert(newInputValue + "//" + i);
-		    	    }
-		    	}
-		    }
-		});
-
-		 // value 가져오는 방법
-		for(let i = 0; i < options.length; i++) {
-		    let option = options[i];
-		    
-		    //alert(JSON.stringify(option.val2()));
-		    
-		   	//alert(options[i].ssef());
-		}
-		 */
-
-		//alert(options.length);
-		/* 
-		dom.on("change", function(event){
-			let args = event.args;
-			
-			if(args) {
-			   	alert("test: " + args.checked); 
-			}
-		});
-		 */
 		 
 		/* Events */	
 		// checked
@@ -369,20 +316,317 @@
 		}
 		
 		
-		
 		// change
-		// unchecked
+		let template_btnEventChange = [{
+			"bind" : "btnEventChange",
+			"name" : "btnEventChange",
+			"type" : "option",			
+			"options" : [
+		              { label: 'Option 1', value: 'value1' },
+		              { label: 'Option 2', value: 'value2' },
+		              { label: 'Option 3', value: 'value3' }
+		          ],
+			"optionslayout" : "horizontal",
+			"labelPosition" : "right"
+		}];
 		
+		$("#jqxFormButtons_event_change").jqxForm({
+		  	"template" : template_btnEventChange
+		});
+		
+		// 전체 라디오 버튼 element 가져옴
+		let btnEventChange = $("#jqxFormButtons_event_change").jqxForm("getComponentByName", "btnEventChange");
+		// template에 설정한 option들 가져옴 (각각 버튼 element)
+		let optionsChange = $("#jqxFormButtons_event_change").jqxForm("getRadioOptionsByComponent", btnEventChange);
+		
+		for(let i = 0; i < optionsChange.length; i++) {
+		    // option 객체 가져옴
+		    let option = optionsChange[i];
+		    
+		    // evnet 설정
+			option.on("change", function(event) {
+				let args = event.args;
+		       
+				if(args) {
+					let type = args.type;
+					let checked = args.checked;
+					
+					let logTarget = $("#log_change_" + (i + 1));
+					logTarget.html((i+1) + "번째 라디오버튼 상태 type : " + type + " // checked : " + checked);
+			   }
+			});		    
+		}
+		
+		
+		// unchecked
+		let template_btnEventUnchecked = [{
+			"bind" : "btnEventUnchecked",
+			"name" : "btnEventUnchecked",
+			"type" : "option",			
+			"options" : [
+		              { label: 'Option 1', value: 'value1' },
+		              { label: 'Option 2', value: 'value2' },
+		              { label: 'Option 3', value: 'value3' }
+		          ],
+			"optionslayout" : "horizontal",
+			"labelPosition" : "right"
+		}];
+		
+		$("#jqxFormButtons_event_unchecked").jqxForm({
+		  	"template" : template_btnEventUnchecked
+		});
+		
+		// 전체 라디오 버튼 element 가져옴
+		let btnEventUnchecked = $("#jqxFormButtons_event_unchecked").jqxForm("getComponentByName", "btnEventUnchecked");
+		// template에 설정한 option들 가져옴 (각각 버튼 element)
+		let optionsUnchecked = $("#jqxFormButtons_event_unchecked").jqxForm("getRadioOptionsByComponent", btnEventUnchecked);
+		
+		for(let i = 0; i < optionsUnchecked.length; i++) {
+		    // option 객체 가져옴
+		    let option = optionsUnchecked[i];
+		    
+		    // evnet 설정
+			option.on("unchecked", function(event) {
+				$("#log_unchecked").html((i + 1) + "button unchecked trigger!");
+			});		    
+		}
 		
 		/* Methods */
 		// check
+		let template_method_check = [{
+			"bind" : "btnMethodCheck",
+			"name" : "btnMethodCheck",
+			"type" : "option",			
+			"options" : [
+		              { label: 'Option 1', value: 'value1' },
+		              { label: 'Option 2', value: 'value2' },
+		              { label: 'Option 3', value: 'value3' }
+		          ],
+			"optionslayout" : "horizontal",
+			"labelPosition" : "right"
+		}];
+		
+		$("#jqxFormButtons_method_check").jqxForm({
+		  	"template" : template_method_check,
+		});
+		
+		$("#btnCheck").on("click", function() {
+			// 전체 라디오 버튼 element 가져옴
+			let btnMethodCheck = $("#jqxFormButtons_method_check").jqxForm("getComponentByName", "btnMethodCheck");
+			// template에 설정한 option들 가져옴 (각각 버튼 element)
+			let optionsCheck = $("#jqxFormButtons_method_check").jqxForm("getRadioOptionsByComponent", btnMethodCheck);
+			
+			optionsCheck[1].jqxRadioButton("check");
+		});
+		
+		
 		// disable
+		let template_method_disable = [{
+			"bind" : "btnMethodDisable",
+			"name" : "btnMethodDisable",
+			"type" : "option",			
+			"options" : [
+		              { label: 'Option 1', value: 'value1' },
+		              { label: 'Option 2', value: 'value2' },
+		              { label: 'Option 3', value: 'value3' }
+		          ],
+			"optionslayout" : "horizontal",
+			"labelPosition" : "right"
+		}];
+		
+		$("#jqxFormButtons_method_disable").jqxForm({
+		  	"template" : template_method_disable,  	
+		});
+		
+		$("#btnDisable").on("click", function() {
+			// 전체 라디오 버튼 element 가져옴
+			let btnMethodDisable = $("#jqxFormButtons_method_disable").jqxForm("getComponentByName", "btnMethodDisable");
+			// template에 설정한 option들 가져옴 (각각 버튼 element)
+			let optionsDisable = $("#jqxFormButtons_method_disable").jqxForm("getRadioOptionsByComponent", btnMethodDisable);
+			
+			optionsDisable[1].jqxRadioButton("disable");
+		});
+		
+		
 		// destroy
+		let template_method_destroy = [{
+			"bind" : "btnMethodDestroy",
+			"name" : "btnMethodDestroy",
+			"type" : "option",			
+			"options" : [
+		              { label: 'Option 1', value: 'value1' },
+		              { label: 'Option 2', value: 'value2' },
+		              { label: 'Option 3', value: 'value3' }
+		          ],
+			"optionslayout" : "horizontal",
+			"labelPosition" : "right"
+		}];
+		
+		$("#jqxFormButtons_method_destroy").jqxForm({
+		  	"template" : template_method_destroy,  	
+		});
+		
+		$("#btnDestroy").on("click", function() {
+			// 전체 라디오 버튼 element 가져옴
+			let btnMethodDestroy = $("#jqxFormButtons_method_destroy").jqxForm("getComponentByName", "btnMethodDestroy");
+			// template에 설정한 option들 가져옴 (각각 버튼 element)
+			let optionsDestroy = $("#jqxFormButtons_method_destroy").jqxForm("getRadioOptionsByComponent", btnMethodDestroy);
+			
+			optionsDestroy[1].jqxRadioButton("destroy");
+		});
+		
+		
 		// enable
+		let template_method_enable = [{
+			"bind" : "btnMethodEnable",
+			"name" : "btnMethodEnable",
+			"type" : "option",			
+			"disabled" : true,
+			"options" : [
+		              { label: 'Option 1', value: 'value1' },
+		              { label: 'Option 2', value: 'value2' },
+		              { label: 'Option 3', value: 'value3' }
+		          ],
+			"optionslayout" : "horizontal",
+			"labelPosition" : "right"
+		}];
+		
+		$("#jqxFormButtons_method_enable").jqxForm({
+		  	"template" : template_method_enable,  	
+		});
+		
+		$("#btnEnable").on("click", function() {
+			// 전체 라디오 버튼 element 가져옴
+			let btnMethodEnable = $("#jqxFormButtons_method_enable").jqxForm("getComponentByName", "btnMethodEnable");
+			// template에 설정한 option들 가져옴 (각각 버튼 element)
+			let optionsEnable = $("#jqxFormButtons_method_enable").jqxForm("getRadioOptionsByComponent", btnMethodEnable);
+			
+			optionsEnable[1].jqxRadioButton("enable");
+		});
+		
+		
 		// focus
+		let template_method_focus = [{
+			"bind" : "btnMethodFocus",
+			"name" : "btnMethodFocus",
+			"type" : "option",			
+			"options" : [
+		              { label: 'Option 1', value: 'value1' },
+		              { label: 'Option 2', value: 'value2' },
+		              { label: 'Option 3', value: 'value3' }
+		          ],
+			"optionslayout" : "horizontal",
+			"labelPosition" : "right"
+		}];
+		
+		$("#jqxFormButtons_method_focus").jqxForm({
+		  	"template" : template_method_focus,  	
+		});
+		
+		$("#btnFocus").on("click", function() {
+			// 전체 라디오 버튼 element 가져옴
+			let btnMethodFocus = $("#jqxFormButtons_method_focus").jqxForm("getComponentByName", "btnMethodFocus");
+			// template에 설정한 option들 가져옴 (각각 버튼 element)
+			let optionsFocus = $("#jqxFormButtons_method_focus").jqxForm("getRadioOptionsByComponent", btnMethodFocus);
+			
+			optionsFocus[1].jqxRadioButton("focus");
+		});
+		
+		
 		// render
+		let template_method_render = [{
+			"bind" : "btnMethodRender",
+			"name" : "btnMethodRender",
+			"type" : "option",			
+			"options" : [
+		              { label: 'Option 1', value: 'value1' },
+		              { label: 'Option 2', value: 'value2' },
+		              { label: 'Option 3', value: 'value3' }
+		          ],
+			"optionslayout" : "horizontal",
+			"labelPosition" : "right"
+		}];
+		
+		$("#jqxFormButtons_method_render").jqxForm({
+		  	"template" : template_method_render,  	
+		});
+		
+		$("#btnRender").on("click", function() {
+			// 전체 라디오 버튼 element 가져옴
+			let btnMethodRender = $("#jqxFormButtons_method_render").jqxForm("getComponentByName", "btnMethodRender");
+			// template에 설정한 option들 가져옴 (각각 버튼 element)
+			let optionsRender = $("#jqxFormButtons_method_render").jqxForm("getRadioOptionsByComponent", btnMethodRender);
+			
+			optionsRender[1].jqxRadioButton("render");
+		});
+		
+		
 		// uncheck
+		let template_method_uncheck = [{
+			"bind" : "btnMethodUncheck",
+			"name" : "btnMethodUncheck",
+			"type" : "option",			
+			"options" : [
+		              { label: 'Option 1', value: 'value1' },
+		              { label: 'Option 2', value: 'value2' },
+		              { label: 'Option 3', value: 'value3' }
+		          ],
+			"optionslayout" : "horizontal",
+			"labelPosition" : "right"
+		}];
+		
+		$("#jqxFormButtons_method_uncheck").jqxForm({
+		  	"template" : template_method_uncheck,  	
+		});
+		
+		let btnMethodUncheck = $("#jqxFormButtons_method_uncheck").jqxForm("getComponentByName", "btnMethodUncheck");
+		// template에 설정한 option들 가져옴 (각각 버튼 element)
+		let optionsUncheck = $("#jqxFormButtons_method_uncheck").jqxForm("getRadioOptionsByComponent", btnMethodUncheck);
+		
+		// 기본 체크설정
+		optionsUncheck[1].jqxRadioButton("check");
+		
+		$("#btnUncheck").on("click", function() {
+			optionsUncheck[1].jqxRadioButton("uncheck");
+		});
+
+		
 		// val
+		let template_method_val = [{
+			"bind" : "btnMethodVal",
+			"name" : "btnMethodVal",
+			"type" : "option",			
+			"options" : [
+		              { label: 'Option 1', value: 'value1' },
+		              { label: 'Option 2', value: 'value2' },
+		              { label: 'Option 3', value: 'value3' }
+		          ],
+			"optionslayout" : "horizontal",
+			"labelPosition" : "right"
+		}];
+
+		$("#jqxFormButtons_method_val").jqxForm({
+		  	"template" : template_method_val	
+		});
+
+		// 전체 라디오 버튼 element 가져옴
+		let btnMethodVal = $("#jqxFormButtons_method_val").jqxForm("getComponentByName", "btnMethodVal");
+		// template에 설정한 option들 가져옴 (각각 버튼 element)
+		let optionsVal = $("#jqxFormButtons_method_val").jqxForm("getRadioOptionsByComponent", btnMethodVal);
+		 
+		$("#btnVal").on("click", function() {			
+			// Set the value
+			optionsVal[1].jqxRadioButton("val", true);
+			// Set the value using jQuery
+			optionsVal[1].val(true);
+			
+			// Get the value
+			let myVal1 = optionsVal[1].jqxRadioButton("val");
+			// Get the value using jQuery
+			let myVal2 = optionsVal[1].val();
+			
+			alert(myVal1 + "//" +  myVal2);;
+		});
 	});
 </script>
 
@@ -1132,7 +1376,7 @@ let template_btnEventCheck = [{
 }];
 
 $("#jqxFormButtons_event_checked").jqxForm({
-  	"template" : template_animationShowDelay
+  	"template" : template_btnEventCheck
 });
 
 // 전체 라디오 버튼 element 가져옴
@@ -1154,11 +1398,627 @@ for(let i = 0; i < options.length; i++) {
                     </div>
                 </td>
             </tr>
+            <!-- change -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">change</span>
+				</td>
+				<td>
+					<span>Event</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxFormButtons_event_change"></div>
+						<div id="log_change_1"></div>
+						<div id="log_change_2"></div>
+						<div id="log_change_3"></div>
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>라디오 버튼이 체크값이 변경된 경우 trigger됩니다.</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* Set Property */
+let template_btnEventChange = [{
+	"bind" : "btnEventChange",
+	"name" : "btnEventChange",
+	"type" : "option",			
+	"options" : [
+              { label: 'Option 1', value: 'value1' },
+              { label: 'Option 2', value: 'value2' },
+              { label: 'Option 3', value: 'value3' }
+          ],
+	"optionslayout" : "horizontal",
+	"labelPosition" : "right"
+}];
+
+$("#jqxFormButtons_event_change").jqxForm({
+  	"template" : template_btnEventChange
+});
+
+// 전체 라디오 버튼 element 가져옴
+let btnEventChange = $("#jqxFormButtons_event_change").jqxForm("getComponentByName", "btnEventChange");
+// template에 설정한 option들 가져옴 (각각 버튼 element)
+let options = $("#jqxFormButtons_event_change").jqxForm("getRadioOptionsByComponent", btnEventChange);
+
+for(let i = 0; i < options.length; i++) {
+    // option 객체 가져옴
+    let option = options[i];
+    
+    // evnet 설정
+	option.on("change", function(event) {
+		let args = event.args;
+       
+		if(args) {
+			let type = args.type;
+			let checked = args.checked;
+			
+			let logTarget = $("#log_change_" + (i + 1));
+			logTarget.html((i+1) + "번째 라디오버튼 상태 type : " + type + " // checked : " + checked);
+	   }
+	});		    
+}
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- unchecked -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">unchecked</span>
+				</td>
+				<td>
+					<span>Event</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxFormButtons_event_unchecked"></div>
+						<div id="log_unchecked"></div>
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>라디오 버튼이 체크값이 해제된 경우 trigger됩니다.</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* Set Property */
+let template_btnEventUnchecked = [{
+	"bind" : "btnEventUnchecked",
+	"name" : "btnEventUnchecked",
+	"type" : "option",			
+	"options" : [
+              { label: 'Option 1', value: 'value1' },
+              { label: 'Option 2', value: 'value2' },
+              { label: 'Option 3', value: 'value3' }
+          ],
+	"optionslayout" : "horizontal",
+	"labelPosition" : "right"
+}];
+
+$("#jqxFormButtons_event_unchecked").jqxForm({
+  	"template" : template_btnEventUnchecked
+});
+
+// 전체 라디오 버튼 element 가져옴
+let btnEventUnchecked = $("#jqxFormButtons_event_unchecked").jqxForm("getComponentByName", "btnEventUnchecked");
+// template에 설정한 option들 가져옴 (각각 버튼 element)
+let options = $("#jqxFormButtons_event_unchecked").jqxForm("getRadioOptionsByComponent", btnEventUnchecked);
+
+for(let i = 0; i < optionsUnchecked.length; i++) {
+    // option 객체 가져옴
+    let option = optionsUnchecked[i];
+    
+    // evnet 설정
+	option.on("unchecked", function(event) {
+		$("#log_unchecked").html((i + 1) + "button unchecked trigger!");
+	});		    
+}
+</code></pre>
+                    </div>
+                </td>
+            </tr>
 		</tbody>
 	</table>
 </div>
 <div id="methods">
-	<h2 class="documentation-top-header">Methods - TODO:핸들러 및 option DOM처리 구현필요</h2>
+	<h2 class="documentation-top-header">Methods</h2>
 	<table class="documentation-table">
+		<tbody>
+			<!-- check -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">check</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxFormButtons_method_check"></div>
+						<input type="button" id="btnCheck" value="2nd check" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 버튼을 체크합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>None</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let template_method_check = [{
+	"bind" : "btnMethodCheck",
+	"name" : "btnMethodCheck",
+	"type" : "option",			
+	"options" : [
+              { label: 'Option 1', value: 'value1' },
+              { label: 'Option 2', value: 'value2' },
+              { label: 'Option 3', value: 'value3' }
+          ],
+	"optionslayout" : "horizontal",
+	"labelPosition" : "right"
+}];
+
+$("#jqxFormButtons_method_check").jqxForm({
+  	"template" : template_method_check,
+});
+
+let btnMethodCheck = $("#jqxFormButtons_method_check").jqxForm("getComponentByName", "btnMethodCheck");
+ 
+/* 이벤트 설정 */
+$("#btnCheck").on("click", function() {
+	// 전체 라디오 버튼 element 가져옴
+	let btnMethodCheck = $("#jqxFormButtons_method_check").jqxForm("getComponentByName", "btnMethodCheck");
+	// template에 설정한 option들 가져옴 (각각 버튼 element)
+	let optionsCheck = $("#jqxFormButtons_method_check").jqxForm("getRadioOptionsByComponent", btnMethodCheck);
+	
+	optionsCheck[1].jqxRadioButton("check");
+});
+</code></pre>
+					</div>
+				</td>
+			</tr>
+			<!-- disable -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">disable</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxFormButtons_method_disable"></div>
+						<input type="button" id="btnDisable" value="2nd disable" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 버튼을 비활성화합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>None</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let template_method_disable = [{
+	"bind" : "btnMethodDisable",
+	"name" : "btnMethodDisable",
+	"type" : "option",			
+	"options" : [
+              { label: 'Option 1', value: 'value1' },
+              { label: 'Option 2', value: 'value2' },
+              { label: 'Option 3', value: 'value3' }
+          ],
+	"optionslayout" : "horizontal",
+	"labelPosition" : "right"
+}];
+
+$("#jqxFormButtons_method_disable").jqxForm({
+  	"template" : template_method_disable,  	
+});
+
+let btnMethodDisable = $("#jqxFormButtons_method_disable").jqxForm("getComponentByName", "btnMethodDisable");
+ 
+/* 이벤트 설정 */
+$("#btnDisable").on("click", function() {
+	// 전체 라디오 버튼 element 가져옴
+	let btnMethodDisable = $("#jqxFormButtons_method_disable").jqxForm("getComponentByName", "btnMethodDisable");
+	// template에 설정한 option들 가져옴 (각각 버튼 element)
+	let optionsDisable = $("#jqxFormButtons_method_disable").jqxForm("getRadioOptionsByComponent", btnMethodDisable);
+	
+	optionsDisable[1].jqxRadioButton("disable");
+});
+</code></pre>
+					</div>
+				</td>
+			</tr>
+			<!-- destroy -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">destroy</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxFormButtons_method_destroy"></div>
+						<input type="button" id="btnDestroy" value="2nd destroy" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 버튼을 제거합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>None</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let template_method_destroy = [{
+	"bind" : "btnMethodDestroy",
+	"name" : "btnMethodDestroy",
+	"type" : "option",			
+	"options" : [
+              { label: 'Option 1', value: 'value1' },
+              { label: 'Option 2', value: 'value2' },
+              { label: 'Option 3', value: 'value3' }
+          ],
+	"optionslayout" : "horizontal",
+	"labelPosition" : "right"
+}];
+
+$("#jqxFormButtons_method_destroy").jqxForm({
+  	"template" : template_method_destroy,  	
+});
+
+let btnMethodDestroy = $("#jqxFormButtons_method_destroy").jqxForm("getComponentByName", "btnMethodDestroy");
+ 
+/* 이벤트 설정 */
+$("#btnDestroy").on("click", function() {
+	// 전체 라디오 버튼 element 가져옴
+	let btnMethodDestroy = $("#jqxFormButtons_method_destroy").jqxForm("getComponentByName", "btnMethodDestroy");
+	// template에 설정한 option들 가져옴 (각각 버튼 element)
+	let optionsDestroy = $("#jqxFormButtons_method_destroy").jqxForm("getRadioOptionsByComponent", btnMethodDestroy);
+	
+	optionsDestroy[1].jqxRadioButton("destroy");
+});
+</code></pre>
+					</div>
+				</td>
+			</tr>
+			<!-- enable -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">enable</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxFormButtons_method_enable"></div>
+						<input type="button" id="btnEnable" value="2nd enable" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 버튼을 활성화합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>None</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let template_method_enable = [{
+	"bind" : "btnMethodEnable",
+	"name" : "btnMethodEnable",
+	"type" : "option",
+	"disabled" : true,			// 초기 비활성화설정			
+	"options" : [
+              { label: 'Option 1', value: 'value1' },
+              { label: 'Option 2', value: 'value2' },
+              { label: 'Option 3', value: 'value3' }
+          ],
+	"optionslayout" : "horizontal",
+	"labelPosition" : "right"
+}];
+
+$("#jqxFormButtons_method_enable").jqxForm({
+  	"template" : template_method_enable,  	
+});
+
+let btnMethodEnable = $("#jqxFormButtons_method_enable").jqxForm("getComponentByName", "btnMethodEnable");
+ 
+/* 이벤트 설정 */
+$("#btnEnable").on("click", function() {
+	// 전체 라디오 버튼 element 가져옴
+	let btnMethodEnable = $("#jqxFormButtons_method_enable").jqxForm("getComponentByName", "btnMethodEnable");
+	// template에 설정한 option들 가져옴 (각각 버튼 element)
+	let optionsEnable = $("#jqxFormButtons_method_enable").jqxForm("getRadioOptionsByComponent", btnMethodEnable);
+	
+	optionsEnable[1].jqxRadioButton("enable");
+});
+</code></pre>
+					</div>
+				</td>
+			</tr>
+			<!-- focus -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">focus</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxFormButtons_method_focus"></div>
+						<input type="button" id="btnFocus" value="2nd focus" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 버튼에 포커스를 설정합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>None</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let template_method_focus = [{
+	"bind" : "btnMethodFocus",
+	"name" : "btnMethodFocus",
+	"type" : "option",			
+	"options" : [
+              { label: 'Option 1', value: 'value1' },
+              { label: 'Option 2', value: 'value2' },
+              { label: 'Option 3', value: 'value3' }
+          ],
+	"optionslayout" : "horizontal",
+	"labelPosition" : "right"
+}];
+
+$("#jqxFormButtons_method_focus").jqxForm({
+  	"template" : template_method_focus,  	
+});
+
+let btnMethodFocus = $("#jqxFormButtons_method_focus").jqxForm("getComponentByName", "btnMethodFocus");
+ 
+/* 이벤트 설정 */
+$("#btnFocus").on("click", function() {
+	// 전체 라디오 버튼 element 가져옴
+	let btnMethodFocus = $("#jqxFormButtons_method_focus").jqxForm("getComponentByName", "btnMethodFocus");
+	// template에 설정한 option들 가져옴 (각각 버튼 element)
+	let optionsFocus = $("#jqxFormButtons_method_focus").jqxForm("getRadioOptionsByComponent", btnMethodFocus);
+	
+	optionsFocus[1].jqxRadioButton("focus");
+});
+</code></pre>
+					</div>
+				</td>
+			</tr>
+			<!-- render -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">render</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxFormButtons_method_render"></div>
+						<input type="button" id="btnRender" value="2nd render" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 버튼을 렌더링합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>None</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let template_method_render = [{
+	"bind" : "btnMethodRender",
+	"name" : "btnMethodRender",
+	"type" : "option",			
+	"options" : [
+              { label: 'Option 1', value: 'value1' },
+              { label: 'Option 2', value: 'value2' },
+              { label: 'Option 3', value: 'value3' }
+          ],
+	"optionslayout" : "horizontal",
+	"labelPosition" : "right"
+}];
+
+$("#jqxFormButtons_method_render").jqxForm({
+  	"template" : template_method_render,  	
+});
+
+let btnMethodRender = $("#jqxFormButtons_method_render").jqxForm("getComponentByName", "btnMethodRender");
+ 
+/* 이벤트 설정 */
+$("#btnRender").on("click", function() {
+	// 전체 라디오 버튼 element 가져옴
+	let btnMethodRender = $("#jqxFormButtons_method_render").jqxForm("getComponentByName", "btnMethodRender");
+	// template에 설정한 option들 가져옴 (각각 버튼 element)
+	let optionsRender = $("#jqxFormButtons_method_render").jqxForm("getRadioOptionsByComponent", btnMethodRender);
+	
+	optionsRender[1].jqxRadioButton("render");
+});
+</code></pre>
+					</div>
+				</td>
+			</tr>
+			<!-- uncheck -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">uncheck</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxFormButtons_method_uncheck"></div>
+						<input type="button" id="btnUncheck" value="2nd uncheck" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 버튼을 체크해제합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>None</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let template_method_uncheck = [{
+	"bind" : "btnMethodUncheck",
+	"name" : "btnMethodUncheck",
+	"type" : "option",			
+	"options" : [
+              { label: 'Option 1', value: 'value1' },
+              { label: 'Option 2', value: 'value2' },
+              { label: 'Option 3', value: 'value3' }
+          ],
+	"optionslayout" : "horizontal",
+	"labelPosition" : "right"
+}];
+
+$("#jqxFormButtons_method_uncheck").jqxForm({
+  	"template" : template_method_uncheck,  	
+});
+
+let btnMethodUncheck = $("#jqxFormButtons_method_uncheck").jqxForm("getComponentByName", "btnMethodUncheck");
+ 
+/* 이벤트 설정 */
+$("#btnUncheck").on("click", function() {
+	// 전체 라디오 버튼 element 가져옴
+	let btnMethodUncheck = $("#jqxFormButtons_method_uncheck").jqxForm("getComponentByName", "btnMethodUncheck");
+	// template에 설정한 option들 가져옴 (각각 버튼 element)
+	let optionsUncheck = $("#jqxFormButtons_method_uncheck").jqxForm("getRadioOptionsByComponent", btnMethodUncheck);
+	
+	optionsUncheck[1].jqxRadioButton("uncheck");
+});
+</code></pre>
+					</div>
+				</td>
+			</tr>
+			<!-- val -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">val</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxFormButtons_method_val"></div>
+						<input type="button" id="btnVal" value="2nd val" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 버튼의 값을 설정하거나 가져옵니다.</p>
+						<h4>Parameter Type</h4>
+						<p>Boolean</p>
+						<h4>Return Value</h4>
+						<p>Boolean</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let template_method_val = [{
+	"bind" : "btnMethodVal",
+	"name" : "btnMethodVal",
+	"type" : "option",			
+	"options" : [
+              { label: 'Option 1', value: 'value1' },
+              { label: 'Option 2', value: 'value2' },
+              { label: 'Option 3', value: 'value3' }
+          ],
+	"optionslayout" : "horizontal",
+	"labelPosition" : "right"
+}];
+
+$("#jqxFormButtons_method_val").jqxForm({
+  	"template" : template_method_val	
+});
+
+let btnMethodVal = $("#jqxFormButtons_method_val").jqxForm("getComponentByName", "btnMethodVal");
+ 
+/* 이벤트 설정 */
+$("#btnVal").on("click", function() {			
+	// Set the value
+	optionsVal[1].jqxRadioButton("val", true);
+	// Set the value using jQuery
+	optionsVal[1].val(true);
+	
+	// Get the value
+	let myVal1 = optionsVal[1].jqxRadioButton("val");
+	// Get the value using jQuery
+	let myVal2 = optionsVal[1].val();
+	
+	alert(myVal1 + "//" +  myVal2);;
+});
+</code></pre>
+					</div>
+				</td>
+			</tr>
+		</tbody>
 	</table>
 </div>
