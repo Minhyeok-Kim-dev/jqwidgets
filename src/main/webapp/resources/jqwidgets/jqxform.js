@@ -828,7 +828,9 @@
 				case "switchButton":
 					this._initSwitchButtonTool(g);
 					break;
-				    
+				case "dropDownButton":
+					this._initDropDownButtonTool(g);
+					break;
 				    
 				    
 				case "custom":
@@ -1420,21 +1422,25 @@
                 	"thumbSize" : thumbSize,
                 	"width" : width,
                 });
-                
-                /*
-                elem.val(obj.text === undefined ? "Button" : value);
-                
-                // click event
-                _this.host.find("#" + id).on("click", function (event) {
-                    if(href === "") {
-                        _this._onButtonClick(elem, obj);
-                    } 
-                    else {
-                        window.open(href, target);
-                        return;
-                    }
+            }
+        },
+        _initDropDownButtonTool: function(seq) {
+        	let _this = this;
+            let formId = this.host.attr("id");
+            let id = formId + "_el_" + seq;
+            let obj = _this._getTool(seq);
+            let elem = this.host.find("#" + id);
+            
+            if (obj.init) {
+                obj.init(elem);
+            } else {
+            	let disabled = typeof obj.disabled === "undefined" ? false : obj.disabled;
+            	let animationType = typeof obj.animationType === "undefined" ? "default" : obj.animationType;
+            	
+            	elem.jqxDropDownButton({
+            		"animationType" : animationType,
+                	"disabled" : disabled,
                 });
-                */
             }
         },
         // checkbox (기존 jqxform.js작명 그대로 사용)
