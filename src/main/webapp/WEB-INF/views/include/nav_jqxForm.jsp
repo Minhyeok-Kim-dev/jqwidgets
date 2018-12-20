@@ -129,4 +129,9 @@
 	</div>
 	<div>
 	</div>
+	<div>
+		jqxDropDownList
+	</div>
+	<div>
+	</div>
 </div>

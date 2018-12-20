@@ -788,7 +788,9 @@
 						this._initOptionTool(g);
 					}
 					break;
+				// TODO : option -> jqxDropDownList 처리  dropDownList로 통합?
 				case "dropdownlist":
+				case "dropDownList":
 					this._initOptionToolDropDownList(g);
 					break;
 				case "number":
@@ -876,7 +878,7 @@
 		},
 		// TODO : 여기부터
 		_initOptionTool: function (seq) {
-		    let _this = this;
+			let _this = this;
             let formId = this.host.attr("id");
             let id = formId + "_el_" + seq;
             let obj = _this._getTool(seq);
@@ -918,27 +920,6 @@
                         "events" : ["checked", "unchecked", "indeterminate", "change"]
                     });
                     
-                    // TODO : 181203_kmh 이벤트작업부터
-                    /*
-                    elem.on("checked", function () {
-                        alert("hi");
-                        
-                        if (!this.isInitialized) {
-                            return
-                        }
-                        var e = new a.Event("checked");
-                        e.args = {
-                            //name: d.name,
-                            //text: c.val()
-                        };
-                        e.owner = this;
-                        var b = this.host.trigger(e);
-                        return b
-                    });
-                    */
-                    
-                    //alert(JSON.stringify(events));
-                    
                     elem.on("change", function(event) {
                         _this._onChangeHandler(event);
                     });
@@ -953,39 +934,21 @@
                     radioElem.jqxRadioButton("toggle");
                 });
             }
-            
-		    /*
-			var b = this;
-			var j = "el_" + h;
-			var c = b._getTool(h);
-			for (var d = 0; d < c.options.length; d++) {
-				var g = j + "_option_" + d;
-				var e = b.host.find("#" + g);
-				if (e.length > 0) {
-				    let animationShowDelay = typeof obj.animationShowDelay === "undefined" ? 300 : obj.animationShowDelay;
-				    
-					e.jqxRadioButton({
-						width: 25,
-						theme: b.theme,
-						groupName: "group_" + h
-					}).on("change", function (i) {
-						b._onChangeHandler(i)
-					})
-				}
-				var f = b.host.find("#label_" + g);
-				f.data("el", e);
-				f.on("mousedown", function (k) {
-					var i = a(this).data("el");
-					i.jqxRadioButton("toggle")
-				})
-			}
-			*/
 		},
 		_initOptionToolDropDownList: function (seq) {
+			let _this = this;
+            let formId = this.host.attr("id");
+            let id = formId + "_el_" + seq;
+            let obj = _this._getTool(seq);
+            let elem = this.host.find("#" + id);
+            
+            /*
 			var _this = this;
 			var id = "el_" + seq;
 			var obj =  _this._getTool(seq);
 			var elem = this.host.find("#" + id);
+			*/
+			
 			var divHeight = '<div style="height: 20px;"></div>';
 			var source = [];
 			
@@ -998,23 +961,91 @@
 			if (obj.init) {
 			    obj.init(elem);
 			} else {
-				var width = isNaN(parseFloat(obj.width)) ? "auto" : obj.width;
+				let autoOpen = typeof obj.autoOpen === "undefined" ? false : obj.autoOpen;
+				let autoItemsHeight = typeof obj.autoItemsHeight === "undefined" ? false : obj.autoItemsHeight;
+				let autoDropDownHeight = typeof obj.autoDropDownHeight === "undefined" ? false : obj.autoDropDownHeight;
+				let animationType = typeof obj.animationType === "undefined" ? "default" : obj.animationType;
+				let checkboxes = typeof obj.checkboxes === "undefined" ? false : obj.checkboxes;
+				let closeDelay = typeof obj.closeDelay === "undefined" ? 300 : obj.closeDelay;
+				let disabled = typeof obj.disabled === "undefined" ? false : obj.disabled;
+				let displayMember = typeof obj.displayMember === "undefined" ? "" : obj.displayMember;
+				let dropDownHorizontalAlignment = typeof obj.dropDownHorizontalAlignment === "undefined" ? "left" : obj.dropDownHorizontalAlignment;
+				let dropDownVerticalAlignment = typeof obj.dropDownVerticalAlignment === "undefined" ? "bottom" : obj.dropDownVerticalAlignment;
+				let dropDownHeight = typeof obj.dropDownHeight === "undefined" ? 200 : obj.dropDownHeight; 
+				let dropDownWidth = typeof obj.dropDownWidth === "undefined" ? "auto" : obj.dropDownWidth;
+				let enableSelection = typeof obj.enableSelection === "undefined" ? true : obj.enableSelection;
+				let enableBrowserBoundsDetection = typeof obj.enableBrowserBoundsDetection === "undefined" ? false : obj.enableBrowserBoundsDetection;
+				let enableHover = typeof obj.enableHover === "undefined" ? true : obj.enableHover;
+				let filterable = typeof obj.filterable === "undefined" ? false : obj.filterable;
+				let filterHeight = typeof obj.filterHeight === "undefined" ? 27 : obj.filterHeight;
+				let filterDelay = typeof obj.filterDelay === "undefined" ? 100 : obj.filterDelay;
+				let filterPlaceHolder = typeof obj.filterPlaceHolder === "undefined" ? "Looking for" : obj.filterPlaceHolder;
+				let height = typeof obj.height === "undefined" ? null : obj.height;
+				let incrementalSearch = typeof obj.incrementalSearch === "undefined" ? true : obj.incrementalSearch;
+				let incrementalSearchDelay = typeof obj.incrementalSearchDelay === "undefined" ? 700 : obj.incrementalSearchDelay;
+				let itemHeight = typeof obj.itemHeight === "undefined" ? -1 : obj.itemHeight;
+				let openDelay = typeof obj.openDelay === "undefined" ? 250 : obj.openDelay;
+				let placeHolder = typeof obj.placeHolder === "undefined" ? "" : obj.placeHolder;
+				let popupZIndex = typeof obj.popupZIndex === "undefined" ? 2000 : obj.popupZIndex;
+				let rtl = typeof obj.rtl === "undefined" ? false : obj.rtl;
+				let renderer = typeof obj.renderer === "undefined" ? null : obj.renderer;
+				let selectionRenderer = typeof obj.selectionRenderer === "undefined" ? null : obj.selectionRenderer;
+				let searchMode = typeof obj.searchMode === "undefined" ? "startswithignorecase" : obj.searchMode;
+				let scrollBarSize = typeof obj.scrollBarSize === "undefined" ? 15 : obj.scrollBarSize;
+				let selectedIndex = typeof obj.selectedIndex === "undefined" ? -1 : obj.selectedIndex;
+				let template = typeof obj.template === "undefined" ? "default" : obj.template;
+				let theme = typeof obj.theme === "undefined" ? "" : obj.theme;
+				let valueMember = typeof obj.valueMember === "undefined" ? "" : obj.valueMember;
+				var width = typeof obj.width === "undefined" ? "auto" : obj.width;
+				
 				if (obj.width && obj.width.toString().indexOf("%") != -1 && obj.columnwidth === undefined) {
 					width = "100%";
 				}
 				
-				var height = isNaN(parseFloat(obj.height)) ? "30px" : obj.height;
 				
 				elem.jqxDropDownList({
-					"theme" :  _this.theme,
-					"width" : width || "auto",
-					"autoDropDownHeight" : true,
+					"autoOpen" : autoOpen,
+					"autoItemsHeight" : autoItemsHeight,
+					"autoDropDownHeight" : autoDropDownHeight,
+					"animationType" : animationType,
+					"checkboxes" : checkboxes,
+					"closeDelay" : closeDelay,
+					"disabled" : disabled,
+					"displayMember" : displayMember,
+					"dropDownHorizontalAlignment" : dropDownHorizontalAlignment,
+					"dropDownVerticalAlignment" : dropDownVerticalAlignment,
+					"dropDownHeight" : dropDownHeight,
+					"dropDownWidth" : dropDownWidth,
+					"enableSelection" : enableSelection,
+					"enableBrowserBoundsDetection" : enableBrowserBoundsDetection,
+					"enableHover" : enableHover,
+					"filterable" : filterable,
+					"filterHeight" : filterHeight,
+					"filterDelay" : filterDelay,
+					"filterPlaceHolder" : filterPlaceHolder,
 					"height" : height,
-					"enableBrowserBoundsDetection" : true,
+					"incrementalSearch" : incrementalSearch,
+					"incrementalSearchDelay" : incrementalSearchDelay,
+					"itemHeight" : itemHeight,
+					"openDelay" : openDelay,
+					"placeHolder" : placeHolder,
+					"popupZIndex" : popupZIndex,
+					"rtl" : rtl,
+					"renderer" : renderer,
+					"selectionRenderer" : selectionRenderer,
+					"searchMode" : searchMode,
+					"scrollBarSize" : scrollBarSize,
+					"selectedIndex" : selectedIndex,
 					"source" : source,
-					"selectedIndex" : 0
+					"template" : template,
+					"theme" : theme,
+					"valueMember" : valueMember,
+					"width" : width,
+					
+					"events" : ["open", "close", "select", "unselect", "change", "checkChange", "bindingComplete", "itemAdd", "itemRemove", "itemUpdate"]
 				});
 			}
+			
 			elem.on("change", function (event) {
 			    _this._onChangeHandler(event);
 			})

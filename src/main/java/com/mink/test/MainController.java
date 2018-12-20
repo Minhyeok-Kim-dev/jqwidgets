@@ -77,6 +77,9 @@ public class MainController {
 			case 13:
 				page += "jqxswitchbutton";
 				break;
+			case 14:
+				page += "jqxdropdownlist";
+				break;
 			}
 		} else if (container.equals("layout")) {
 			page += "layout/";
