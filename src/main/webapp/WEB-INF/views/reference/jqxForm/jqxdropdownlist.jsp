@@ -31,7 +31,6 @@
 		    "Breve",
 		    "Café Bombón",
 		    "Affogato",
-		    "Americano",
 		    "Bicerin",
 		    "Café Bombón",
 		    "Café au lait"
@@ -1316,30 +1315,597 @@
 		
 		
 		// getItem
+		let template_methodGetItem = [{ 
+			"bind" : "ddlMethodGetItem",
+			"name" : "ddlMethodGetItem",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+		
+		$("#jqxForm_method_getItem").jqxForm({
+		  	"template" : template_methodGetItem
+		});
+		
+		
+		let ddlMethodGetItem = $("#jqxForm_method_getItem").jqxForm("getComponentByName", "ddlMethodGetItem");
+		 
+		$("#btnGetItem").on("click", function() {
+			let item = ddlMethodGetItem.jqxDropDownList("getItem", 1);	// 2번째 item 가져옴
+			alert(JSON.stringify(item));
+		});
+		
+		
 		// getItemByValue
+		let template_methodGetItemByValue = [{ 
+			"bind" : "ddlMethodGetItemByValue",
+			"name" : "ddlMethodGetItemByValue",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+		
+		$("#jqxForm_method_getItemByValue").jqxForm({
+		  	"template" : template_methodGetItemByValue
+		});
+		
+		let ddlMethodGetItemByValue = $("#jqxForm_method_getItemByValue").jqxForm("getComponentByName", "ddlMethodGetItemByValue");
+		 
+		$("#btnGetItemByValue").on("click", function() {
+			let item = ddlMethodGetItemByValue.jqxDropDownList("getItemByValue", "Americano");	// value가 "Americano"인 item 가져옴
+			alert(JSON.stringify(item));
+		});
+		
+		
 		// getItems
+		let template_methodGetItems = [{ 
+			"bind" : "ddlMethodGetItems",
+			"name" : "ddlMethodGetItems",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+		
+		$("#jqxForm_method_getItems").jqxForm({
+		  	"template" : template_methodGetItems
+		});
+		
+		let ddlMethodGetItems = $("#jqxForm_method_getItems").jqxForm("getComponentByName", "ddlMethodGetItems");
+		 
+		$("#btnGetItems").on("click", function() {
+			let items = ddlMethodGetItems.jqxDropDownList("getItems");	// value가 "Americano"인 item 가져옴
+			alert(JSON.stringify(items));
+		});
+		
+		
 		// getCheckedItems
+		let template_methodGetCheckedItems = [{ 
+			"bind" : "ddlMethodGetCheckedItems",
+			"name" : "ddlMethodGetCheckedItems",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source,
+			"checkboxes" : true
+		}];
+		
+		$("#jqxForm_method_getCheckedItems").jqxForm({
+		  	"template" : template_methodGetCheckedItems
+		});
+		
+		let ddlMethodGetCheckedItems= $("#jqxForm_method_getCheckedItems").jqxForm("getComponentByName", "ddlMethodGetCheckedItems");
+		 
+		$("#btnGetCheckedItems").on("click", function() {
+			let items = ddlMethodGetCheckedItems.jqxDropDownList("getCheckedItems");
+			alert(JSON.stringify(items));
+		});
+		
+		
 		// getSelectedItem
+		let template_methodGetSelectedItem = [{ 
+			"bind" : "ddlMethodGetSelectedItem",
+			"name" : "ddlMethodGetSelectedItem",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+		
+		$("#jqxForm_method_getSelectedItem").jqxForm({
+		  	"template" : template_methodGetSelectedItem
+		});
+		
+		let ddlMethodGetSelectedItem = $("#jqxForm_method_getSelectedItem").jqxForm("getComponentByName", "ddlMethodGetSelectedItem");
+		 
+		$("#btnGetSelectedItem").on("click", function() {
+			let item = ddlMethodGetSelectedItem.jqxDropDownList("getSelectedItem");
+			alert(JSON.stringify(item));
+		});
+		
+		
 		// getSelectedIndex
+		let template_methodGetSelectedIndex= [{ 
+			"bind" : "ddlMethodGetSelectedIndex",
+			"name" : "ddlMethodGetSelectedIndex",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+		
+		$("#jqxForm_method_getSelectedIndex").jqxForm({
+		  	"template" : template_methodGetSelectedIndex
+		});
+		
+		let ddlMethodGetSelectedIndex = $("#jqxForm_method_getSelectedIndex").jqxForm("getComponentByName", "ddlMethodGetSelectedIndex");
+		 
+		$("#btnGetSelectedIndex").on("click", function() {
+			let index = ddlMethodGetSelectedIndex.jqxDropDownList("getSelectedIndex");
+			alert(index);
+		});
+		
+		
 		// insertAt
+		let template_methodInsertAt = [{ 
+			"bind" : "ddlMethodInsertAt",
+			"name" : "ddlMethodInsertAt",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+		
+		$("#jqxForm_method_insertAt").jqxForm({
+		  	"template" : template_methodInsertAt
+		});
+		
+		let ddlMethodInsertAt = $("#jqxForm_method_insertAt").jqxForm("getComponentByName", "ddlMethodInsertAt");
+		 
+		$("#btnInsertAt").on("click", function() {
+			// case 1 
+			ddlMethodInsertAt.jqxDropDownList("insertAt", "myItem", 1);	// 2번째 위치에 item 추가
+			
+			// case 2
+			let item = {label : "myItem2", value : "100"};
+			ddlMethodInsertAt.jqxDropDownList("insertAt", item, 2);	// 3번째 위치에 item 추가
+			
+			// case 3
+			ddlMethodInsertAt.jqxDropDownList("insertAt", "lastItem");	// 마지막 위치에 item 추가
+		});
+		
+		
 		// isOpened
+		let template_methodIsOpened = [{ 
+			"bind" : "ddlMethodIsOpened",
+			"name" : "ddlMethodIsOpened",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+		
+		$("#jqxForm_method_isOpened").jqxForm({
+		  	"template" : template_methodIsOpened
+		});
+		
+		let ddlMethodIsOpened = $("#jqxForm_method_isOpened").jqxForm("getComponentByName", "ddlMethodIsOpened");
+		 
+		$("#btnIsOpened").on("click", function() {
+			let isOpened = ddlMethodIsOpened.jqxDropDownList("isOpened");
+			alert(isOpened);
+		});
+		
+		
 		// indeterminateIndex
+		let template_methodIndeterminateIndex = [{ 
+			"bind" : "ddlMethodIndeterminateIndex",
+			"name" : "ddlMethodIndeterminateIndex",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source,
+			"checkboxes" : true
+		}];
+		
+		$("#jqxForm_method_indeterminateIndex").jqxForm({
+		  	"template" : template_methodIndeterminateIndex
+		});
+		
+		let ddlMethodIndeterminateIndex = 
+			$("#jqxForm_method_indeterminateIndex").jqxForm("getComponentByName", "ddlMethodIndeterminateIndex");
+		 
+		$("#btnIndeterminateIndex").on("click", function() {
+			ddlMethodIndeterminateIndex.jqxDropDownList("indeterminateIndex", 1);	 // 2번째 체크상태 변경
+		});
+		
+		
 		// indeterminateItem
+		let template_methodIndeterminateItem = [{ 
+			"bind" : "ddlMethodIndeterminateItem",
+			"name" : "ddlMethodIndeterminateItem",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source,
+			"checkboxes" : true
+		}];
+		
+		$("#jqxForm_method_indeterminateItem").jqxForm({
+		  	"template" : template_methodIndeterminateItem
+		});
+		
+		let ddlMethodIndeterminateItem= 
+			$("#jqxForm_method_indeterminateItem").jqxForm("getComponentByName", "ddlMethodIndeterminateItem");
+		 
+		$("#btnIndeterminateItem").on("click", function() {
+			ddlMethodIndeterminateItem.jqxDropDownList("indeterminateItem", "Americano");	 // "Americano" 값의 체크상태 변경
+		});
+		
+		
 		// loadFromSelect
+		let template_methodLoadFromSelect = [{ 
+			"bind" : "ddlMethodLoadFromSelect",
+			"name" : "ddlMethodLoadFromSelect",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200
+		}];
+		
+		$("#jqxForm_method_loadFromSelect").jqxForm({
+		  	"template" : template_methodLoadFromSelect
+		});
+		
+		let ddlMethodLoadFromSelect = 
+			$("#jqxForm_method_loadFromSelect").jqxForm("getComponentByName", "ddlMethodLoadFromSelect");
+		 
+		$("#btnLoadFromSelect").on("click", function() {
+			ddlMethodLoadFromSelect.jqxDropDownList("loadFromSelect", "mySelect");	 // "mySelect" id인 select box로 부터 가져옴
+		});
+		
+		/* 동기화 */
+		let updating = false;
+
+		ddlMethodLoadFromSelect.on("select", function(event) {
+			let args = event.args;
+			if(args && !updating) {
+				
+				$("#mySelect").val(args.item.value);
+			}
+		});
+
+		$("#mySelect").on("change", function(event) {
+			updating = true;
+			
+			let index = $("#mySelect")[0].selectedIndex;
+			
+			ddlMethodLoadFromSelect.jqxDropDownList("selectIndex", index);
+			ddlMethodLoadFromSelect.jqxDropDownList("ensureVisible", index);
+			
+			updating = false;
+		});
+		
+		
 		// open
+		let template_methodOpen = [{ 
+			"bind" : "ddlMethodOpen",
+			"name" : "ddlMethodOpen",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+		
+		$("#jqxForm_method_open").jqxForm({
+		  	"template" : template_methodOpen
+		});
+		
+		let ddlMethodOpen = 
+			$("#jqxForm_method_open").jqxForm("getComponentByName", "ddlMethodOpen");
+		
+		$("#btnOpen").on("click", function() {
+			ddlMethodOpen.jqxDropDownList("open");	
+		});
+		
+		
 		// removeItem
+		let template_methodRemoveItem = [{ 
+			"bind" : "ddlMethodRemoveItem",
+			"name" : "ddlMethodRemoveItem",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+		
+		$("#jqxForm_method_removeItem").jqxForm({
+		  	"template" : template_methodRemoveItem
+		});
+		
+		let ddlMethodRemoveItem = 
+			$("#jqxForm_method_removeItem").jqxForm("getComponentByName", "ddlMethodRemoveItem");
+		 
+		$("#btnRemoveItem").on("click", function() {
+			ddlMethodRemoveItem.jqxDropDownList("removeItem", "Americano");	// 값이 "Americano"인 내용 제거	
+		});
+		
+		
 		// removeAt
+		let template_methodRemoveAt= [{ 
+			"bind" : "ddlMethodRemoveAt",
+			"name" : "ddlMethodRemoveAt",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+		
+		$("#jqxForm_method_removeAt").jqxForm({
+		  	"template" : template_methodRemoveAt
+		});
+		
+		let ddlMethodRemoveAt = 
+			$("#jqxForm_method_removeAt").jqxForm("getComponentByName", "ddlMethodRemoveAt");
+		 
+		$("#btnRemoveAt").on("click", function() {
+			ddlMethodRemoveAt.jqxDropDownList("removeAt", "2");	// 3번째 index의 내용 제거	
+		});
+		
+		
 		// selectIndex
+		let template_methodSelectIndex = [{ 
+			"bind" : "ddlMethodSelectIndex",
+			"name" : "ddlMethodSelectIndex",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+		
+		$("#jqxForm_method_selectIndex").jqxForm({
+		  	"template" : template_methodSelectIndex
+		});
+		
+		let ddlMethodSelectIndex = 
+			$("#jqxForm_method_selectIndex").jqxForm("getComponentByName", "ddlMethodSelectIndex");
+		 
+		$("#btnSelectIndex").on("click", function() {
+			ddlMethodSelectIndex.jqxDropDownList("selectIndex", "2");	// 3번째 값 선택	
+		});
+		
+		
 		// selectItem
+		let template_methodSelectItem = [{ 
+			"bind" : "ddlMethodSelectItem",
+			"name" : "ddlMethodSelectItem",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+		
+		$("#jqxForm_method_selectItem").jqxForm({
+		  	"template" : template_methodSelectItem
+		});
+		
+		let ddlMethodSelectItem = 
+			$("#jqxForm_method_selectItem").jqxForm("getComponentByName", "ddlMethodSelectItem");
+		 
+		$("#btnSelectItem").on("click", function() {
+			ddlMethodSelectItem.jqxDropDownList("selectItem", "Americano");	// "Americano" 값 선택	
+		});
+		
+		
 		// setContent
+		let template_methodSetContent = [{ 
+			"bind" : "ddlMethodSetContent",
+			"name" : "ddlMethodSetContent",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+		
+		$("#jqxForm_method_setContent").jqxForm({
+		  	"template" : template_methodSetContent
+		});
+		
+		let ddlMethodSetContent= 
+			$("#jqxForm_method_setContent").jqxForm("getComponentByName", "ddlMethodSetContent");
+
+		$("#btnSetContent").on("click", function() {
+			ddlMethodSetContent.jqxDropDownList("setContent", "My Contents");	
+		});
+		
+		
 		// updateItem
+		let template_methodUpdateItem = [{ 
+			"bind" : "ddlMethodUpdateItem",
+			"name" : "ddlMethodUpdateItem",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+		
+		$("#jqxForm_method_updateItem").jqxForm({
+		  	"template" : template_methodUpdateItem
+		});
+		
+		let ddlMethodUpdateItem = $("#jqxForm_method_updateItem").jqxForm("getComponentByName", "ddlMethodUpdateItem");
+		 
+		$("#btnUpdateItem").on("click", function() {
+			ddlMethodUpdateItem.jqxDropDownList("updateItem", "new Americano", "Americano");
+		});
+		
+		
 		// updateAt
+		let template_methodUpdateAt = [{ 
+			"bind" : "ddlMethodUpdateAt",
+			"name" : "ddlMethodUpdateAt",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+		
+		$("#jqxForm_method_updateAt").jqxForm({
+		  	"template" : template_methodUpdateAt
+		});
+		
+		let ddlMethodUpdateAt = $("#jqxForm_method_updateAt").jqxForm("getComponentByName", "ddlMethodUpdateAt");
+		 
+		$("#btnUpdateAt").on("click", function() {
+			ddlMethodUpdateAt.jqxDropDownList("updateAt", "new Coffee", 2);	// 3번째 값 변경	
+		});
+		
+		
 		// unselectIndex
+		let template_methodUnselectIndex = [{ 
+			"bind" : "ddlMethodUnselectIndex",
+			"name" : "ddlMethodUnselectIndex",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source,
+			"selectedIndex" : 2
+		}];
+		
+		$("#jqxForm_method_unselectIndex").jqxForm({
+		  	"template" : template_methodUnselectIndex
+		});
+		
+		let ddlMethodUnselectIndex = $("#jqxForm_method_unselectIndex").jqxForm("getComponentByName", "ddlMethodUnselectIndex");
+		 
+		$("#btnUnselectIndex").on("click", function() {
+			ddlMethodUnselectIndex.jqxDropDownList("unselectIndex", 2);	// 3번째 값 선택 해제	
+		});
+		
+		
 		// unselectItem
+		let template_methodUnselectItem = [{ 
+			"bind" : "ddlMethodUnselectItem",
+			"name" : "ddlMethodUnselectItem",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source,
+			"selectedIndex" : 1
+		}];
+		
+		$("#jqxForm_method_unselectItem").jqxForm({
+		  	"template" : template_methodUnselectItem
+		});
+		
+		let ddlMethodUnselectItem = $("#jqxForm_method_unselectItem").jqxForm("getComponentByName", "ddlMethodUnselectItem");
+		 
+		$("#btnUnselectItem").on("click", function() {
+			ddlMethodUnselectItem.jqxDropDownList("unselectItem", "Americano");	
+		});
+		
+		
 		// uncheckIndex
+		let template_methodUncheckIndex = [{ 
+			"bind" : "ddlMethodUncheckIndex",
+			"name" : "ddlMethodUncheckIndex",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source,
+			"checkboxes" : true
+		}];
+		
+		$("#jqxForm_method_uncheckIndex").jqxForm({
+		  	"template" : template_methodUncheckIndex
+		});
+		
+		let ddlMethodUncheckIndex = $("#jqxForm_method_uncheckIndex").jqxForm("getComponentByName", "ddlMethodUncheckIndex");
+		ddlMethodUncheckIndex.jqxDropDownList("checkIndex", 0);	// 체크 설정
+		 
+		$("#btnUncheckIndex").on("click", function() {
+			ddlMethodUncheckIndex.jqxDropDownList("uncheckIndex", 0);	// 체크 해제	
+		});
+		
+		
 		// uncheckItem
+		let template_methodUncheckItem = [{ 
+			"bind" : "ddlMethodUncheckItem",
+			"name" : "ddlMethodUncheckItem",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source,
+			"checkboxes" : true
+		}];
+		
+		$("#jqxForm_method_uncheckItem").jqxForm({
+		  	"template" : template_methodUncheckItem
+		});
+		
+		let ddlMethodUncheckItem = $("#jqxForm_method_uncheckItem").jqxForm("getComponentByName", "ddlMethodUncheckItem");
+		ddlMethodUncheckItem.jqxDropDownList("checkItem", "Americano");	// 체크 설정 
+
+		$("#btnUncheckItem").on("click", function() {
+			ddlMethodUncheckItem.jqxDropDownList("uncheckItem", "Americano");	// 체크 해제	
+		});
+		
+		
 		// uncheckAll
+		let template_methodUncheckAll = [{ 
+			"bind" : "ddlMethodUncheckAll",
+			"name" : "ddlMethodUncheckAll",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source,
+			"checkboxes" : true
+		}];
+		
+		$("#jqxForm_method_uncheckAll").jqxForm({
+		  	"template" : template_methodUncheckAll
+		});
+		
+		let ddlMethodUncheckAll = $("#jqxForm_method_uncheckAll").jqxForm("getComponentByName", "ddlMethodUncheckAll");
+		ddlMethodUncheckAll.jqxDropDownList("checkAll");	// 체크 설정 
+		 
+		$("#btnUncheckAll").on("click", function() {
+			ddlMethodUncheckAll.jqxDropDownList("uncheckAll");	// 체크 해제	
+		});
+		
+		
 		// val
+		let template_methodVal = [{ 
+			"bind" : "ddlMethodVal",
+			"name" : "ddlMethodVal",
+			"type" : "option",
+			"component" : "jqxDropDownList",
+			"width" : 200,
+			"options" : source
+		}];
+
+		$("#jqxForm_method_val").jqxForm({
+		  	"template" : template_methodVal
+		});
+
+		let ddlMethodVal = $("#jqxForm_method_val").jqxForm("getComponentByName", "ddlMethodVal"); 
+
+		$("#btnVal").on("click", function() {
+			// Set value 
+			ddlMethodVal.jqxDropDownList("val", "Americano");
+			
+			// Set value using jQuery
+			ddlMethodVal.val("Americano");
+			
+			// Get value
+			let val1 = ddlMethodVal.jqxDropDownList("val");
+		
+			// Get value using jQuery
+			let val2 = ddlMethodVal.val();
+			
+			alert(val1 + "//" + val2);
+		});
 		
 		
 	});
@@ -5356,6 +5922,1831 @@ let ddlMethodFocus = $("#jqxForm_method_focus").jqxForm("getComponentByName", "d
 /* 이벤트 설정 */
 $("#btnFocus").on("click", function() {
 	ddlMethodFocus.jqxDropDownList("focus");
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- getItem -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">getItem</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_getItem"></div>
+						<input type="button" id="btnGetItem" value="GetItem" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>index에 해당하는 item을 가져옵니다. item Object는 다음과 같은 field로 구성되어 있습니다.</p>
+						<p>> label - item의 label을 설정합니다.</p>
+						<p>> value - item의 값을 설정합니다.</p>
+						<p>> disabled - item의 disabled 여부를 설정합니다.</p>
+						<p>> checked - item의 checked 여부를 설정합니다.</p>
+						<p>> hasThreeStates - checkbox가 three states를 지원하는 여부를 설정합니다.</p>
+						<p>> html - 화면에 나타날 내용을 설정합니다. lable 대신에 사용될 수 있습니다.</p>
+						<p>> index - item의 index를 가져옵니다.</p>
+						<p>> group - item의 group을 설정합니다.</p>				
+						<h4>Parameter Type</h4>
+						<p>index - Number</p>
+						<h4>Return Value</h4>
+						<p>item - Object</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodGetItem = [{ 
+	"bind" : "ddlMethodGetItem",
+	"name" : "ddlMethodGetItem",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_getItem").jqxForm({
+  	"template" : template_methodGetItem
+});
+
+
+let ddlMethodGetItem = $("#jqxForm_method_getItem").jqxForm("getComponentByName", "ddlMethodGetItem");
+ 
+/* 이벤트 설정 */
+$("#btnGetItem").on("click", function() {
+	let item = ddlMethodGetItem.jqxDropDownList("getItem", 1);	// 2번째 item 가져옴
+	alert(JSON.stringify(item));
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- getItemByValue -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">getItemByValue</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_getItemByValue"></div>
+						<input type="button" id="btnGetItemByValue" value="GetItemByValue" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>value에 해당하는 item을 가져옵니다. item Object는 다음과 같은 field로 구성되어 있습니다.</p>
+						<p>> label - item의 label을 설정합니다.</p>
+						<p>> value - item의 값을 설정합니다.</p>
+						<p>> disabled - item의 disabled 여부를 설정합니다.</p>
+						<p>> checked - item의 checked 여부를 설정합니다.</p>
+						<p>> hasThreeStates - checkbox가 three states를 지원하는 여부를 설정합니다.</p>
+						<p>> html - 화면에 나타날 내용을 설정합니다. lable 대신에 사용될 수 있습니다.</p>
+						<p>> index - item의 index를 가져옵니다.</p>
+						<p>> group - item의 group을 설정합니다.</p>				
+						<h4>Parameter Type</h4>
+						<p>itemValue - String</p>
+						<h4>Return Value</h4>
+						<p>item - Object</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodGetItemByValue = [{ 
+	"bind" : "ddlMethodGetItemByValue",
+	"name" : "ddlMethodGetItemByValue",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_getItemByValue").jqxForm({
+  	"template" : template_methodGetItemByValue
+});
+
+
+let ddlMethodGetItemByValue = $("#jqxForm_method_getItemByValue").jqxForm("getComponentByName", "ddlMethodGetItemByValue");
+ 
+/* 이벤트 설정 */
+$("#btnGetItemByValue").on("click", function() {
+	let item = ddlMethodGetItemByValue.jqxDropDownList("getItemByValue", "Americano");	// value가 "Americano"인 item 가져옴
+	alert(JSON.stringify(item));
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+      		<!-- getItems -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">getItems</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_getItems"></div>
+						<input type="button" id="btnGetItems" value="GetItems" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>모든 item을 가져옵니다. item Object는 다음과 같은 field로 구성되어 있습니다.</p>
+						<p>> label - item의 label을 설정합니다.</p>
+						<p>> value - item의 값을 설정합니다.</p>
+						<p>> disabled - item의 disabled 여부를 설정합니다.</p>
+						<p>> checked - item의 checked 여부를 설정합니다.</p>
+						<p>> hasThreeStates - checkbox가 three states를 지원하는 여부를 설정합니다.</p>
+						<p>> html - 화면에 나타날 내용을 설정합니다. lable 대신에 사용될 수 있습니다.</p>
+						<p>> index - item의 index를 가져옵니다.</p>
+						<p>> group - item의 group을 설정합니다.</p>				
+						<h4>Parameter Type</h4>
+						<p>None</p>
+						<h4>Return Value</h4>
+						<p>items - Array</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodGetItems = [{ 
+	"bind" : "ddlMethodGetItems",
+	"name" : "ddlMethodGetItems",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_getItems").jqxForm({
+  	"template" : template_methodGetItems
+});
+
+
+let ddlMethodGetItems = $("#jqxForm_method_getItems").jqxForm("getComponentByName", "ddlMethodGetItems");
+ 
+/* 이벤트 설정 */
+$("#btnGetItems").on("click", function() {
+	let items = ddlMethodGetItems.jqxDropDownList("getItems");
+	alert(JSON.stringify(items));
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- getCheckedItems -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">getCheckedItems</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_getCheckedItems"></div>
+						<input type="button" id="btnGetCheckedItems" value="GetCheckedItems" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>체크 된 item을 가져옵니다. item Object는 다음과 같은 field로 구성되어 있습니다.</p>
+						<p>> label - item의 label을 설정합니다.</p>
+						<p>> value - item의 값을 설정합니다.</p>
+						<p>> disabled - item의 disabled 여부를 설정합니다.</p>
+						<p>> checked - item의 checked 여부를 설정합니다.</p>
+						<p>> hasThreeStates - checkbox가 three states를 지원하는 여부를 설정합니다.</p>
+						<p>> html - 화면에 나타날 내용을 설정합니다. lable 대신에 사용될 수 있습니다.</p>
+						<p>> index - item의 index를 가져옵니다.</p>
+						<p>> group - item의 group을 설정합니다.</p>				
+						<h4>Parameter Type</h4>
+						<p>None</p>
+						<h4>Return Value</h4>
+						<p>items - Array</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodGetCheckedItems = [{ 
+	"bind" : "ddlMethodGetCheckedItems",
+	"name" : "ddlMethodGetCheckedItems",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source,
+	"checkboxes" : true
+}];
+
+$("#jqxForm_method_getCheckedItems").jqxForm({
+  	"template" : template_methodGetCheckedItems
+});
+
+
+let ddlMethodGetCheckedItems= $("#jqxForm_method_getCheckedItems").jqxForm("getComponentByName", "ddlMethodGetCheckedItems");
+ 
+/* 이벤트 설정 */
+$("#btnGetCheckedItems").on("click", function() {
+	let items = ddlMethodGetCheckedItems.jqxDropDownList("getCheckedItems");
+	alert(JSON.stringify(items));
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- getSelectedItem -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">getSelectedItem</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_getSelectedItem"></div>
+						<input type="button" id="btnGetSelectedItem" value="getSelectedItem" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>선택 된 item을 가져옵니다. item Object는 다음과 같은 field로 구성되어 있습니다.</p>
+						<p>> label - item의 label을 설정합니다.</p>
+						<p>> value - item의 값을 설정합니다.</p>
+						<p>> disabled - item의 disabled 여부를 설정합니다.</p>
+						<p>> checked - item의 checked 여부를 설정합니다.</p>
+						<p>> hasThreeStates - checkbox가 three states를 지원하는 여부를 설정합니다.</p>
+						<p>> html - 화면에 나타날 내용을 설정합니다. lable 대신에 사용될 수 있습니다.</p>
+						<p>> index - item의 index를 가져옵니다.</p>
+						<p>> group - item의 group을 설정합니다.</p>				
+						<h4>Parameter Type</h4>
+						<p>None</p>
+						<h4>Return Value</h4>
+						<p>item - Object or Null(미선택시)</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodGetSelectedItem = [{ 
+	"bind" : "ddlMethodGetSelectedItem",
+	"name" : "ddlMethodGetSelectedItem",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_getSelectedItem").jqxForm({
+  	"template" : template_methodGetSelectedItem
+});
+
+
+let ddlMethodGetSelectedItem = $("#jqxForm_method_getSelectedItem").jqxForm("getComponentByName", "ddlMethodGetSelectedItem");
+ 
+/* 이벤트 설정 */
+$("#btnGetSelectedItem").on("click", function() {
+	let item = ddlMethodGetSelectedItem.jqxDropDownList("getSelectedItem");
+	alert(JSON.stringify(item));
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- getSelectedIndex -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">getSelectedIndex</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_getSelectedIndex"></div>
+						<input type="button" id="btnGetSelectedIndex" value="GetSelectedIndex" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>선택 된 item index를 가져옵니다.(0-based) 미선택시 -1을 반환합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>None</p>
+						<h4>Return Value</h4>
+						<p>index - Number</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodGetSelectedIndex= [{ 
+	"bind" : "ddlMethodGetSelectedIndex",
+	"name" : "ddlMethodGetSelectedIndex",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_getSelectedIndex").jqxForm({
+  	"template" : template_methodGetSelectedIndex
+});
+
+
+let ddlMethodGetSelectedIndex = $("#jqxForm_method_getSelectedIndex").jqxForm("getComponentByName", "ddlMethodGetSelectedIndex");
+ 
+/* 이벤트 설정 */
+$("#btnGetSelectedIndex").on("click", function() {
+	let index = ddlMethodGetSelectedIndex.jqxDropDownList("getSelectedIndex");
+	alert(index);
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- insertAt -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">insertAt</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_insertAt"></div>
+						<input type="button" id="btnInsertAt" value="InsertAt" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 index에 item을 추가합니다..(0-based) 정상 추가시 true를 반환합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>item - Object or String</p>
+						<p>index - Number (생략시 마지막 위치에 insert)</p>
+						<p>item Object는 다음과 같은 field로 구성되어 있습니다.</p>
+						<p>> label - item의 label을 설정합니다.</p>
+						<p>> value - item의 값을 설정합니다.</p>
+						<p>> disabled - item의 disabled 여부를 설정합니다.</p>
+						<p>> checked - item의 checked 여부를 설정합니다.</p>
+						<p>> hasThreeStates - checkbox가 three states를 지원하는 여부를 설정합니다.</p>
+						<p>> html - 화면에 나타날 내용을 설정합니다. lable 대신에 사용될 수 있습니다.</p>
+						<p>> group - item의 group을 설정합니다.</p>
+						<h4>Return Value</h4>
+						<p>Boolean</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodInsertAt = [{ 
+	"bind" : "ddlMethodInsertAt",
+	"name" : "ddlMethodInsertAt",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_insertAt").jqxForm({
+  	"template" : template_methodInsertAt
+});
+
+
+let ddlMethodInsertAt = $("#jqxForm_method_insertAt").jqxForm("getComponentByName", "ddlMethodInsertAt");
+ 
+/* 이벤트 설정 */
+$("#btnInsertAt").on("click", function() {
+	// case 1 
+	ddlMethodInsertAt.jqxDropDownList("insertAt", "myItem", 1);	// 2번째 위치에 item 추가
+	
+	// case 2
+	let item = {label : "myItem2", value : "100"};
+	ddlMethodInsertAt.jqxDropDownList("insertAt", item, 2);	// 3번째 위치에 item 추가
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- isOpened -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">isOpened</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_isOpened"></div>
+						<input type="button" id="btnIsOpened" value="IsOpened" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>DropDownList popup이 열린 경우 true반환</p>
+						<h4>Parameter Type</h4>
+						<p>None</p>
+						<h4>Return Value</h4>
+						<p>Boolean</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodIsOpened = [{ 
+	"bind" : "ddlMethodIsOpened",
+	"name" : "ddlMethodIsOpened",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_isOpened").jqxForm({
+  	"template" : template_methodIsOpened
+});
+
+
+let ddlMethodIsOpened = $("#jqxForm_method_isOpened").jqxForm("getComponentByName", "ddlMethodIsOpened");
+ 
+/* 이벤트 설정 */
+$("#btnIsOpened").on("click", function() {
+	let isOpened = ddlMethodIsOpened.jqxDropDownList("isOpened");
+	alert(isOpened);
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- indeterminateIndex -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">indeterminateIndex</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_indeterminateIndex"></div>
+						<input type="button" id="btnIndeterminateIndex" value="IndeterminateIndex" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 index의 값에 indeterminate 체크상태를 설정합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>index - Number</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodIndeterminateIndex = [{ 
+	"bind" : "ddlMethodIndeterminateIndex",
+	"name" : "ddlMethodIndeterminateIndex",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source,
+	"checkboxes" : true
+}];
+
+$("#jqxForm_method_indeterminateIndex").jqxForm({
+  	"template" : template_methodIndeterminateIndex
+});
+
+
+let ddlMethodIndeterminateIndex = 
+	$("#jqxForm_method_indeterminateIndex").jqxForm("getComponentByName", "ddlMethodIndeterminateIndex");
+ 
+/* 이벤트 설정 */
+$("#btnIndeterminateIndex").on("click", function() {
+	ddlMethodIndeterminateIndex.jqxDropDownList("indeterminateIndex", 1);	 // 2번째 체크상태 변경
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- indeterminateItem -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">indeterminateItem</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_indeterminateItem"></div>
+						<input type="button" id="btnIndeterminateItem" value="IndeterminateItem" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 item에 indeterminate 체크상태를 설정합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>item - Object or String</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodIndeterminateItem = [{ 
+	"bind" : "ddlMethodIndeterminateItem",
+	"name" : "ddlMethodIndeterminateItem",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source,
+	"checkboxes" : true
+}];
+
+$("#jqxForm_method_indeterminateItem").jqxForm({
+  	"template" : template_methodIndeterminateItem
+});
+
+
+let ddlMethodIndeterminateItem= 
+	$("#jqxForm_method_indeterminateItem").jqxForm("getComponentByName", "ddlMethodIndeterminateItem");
+ 
+/* 이벤트 설정 */
+$("#btnIndeterminateItem").on("click", function() {
+	ddlMethodIndeterminateItem.jqxDropDownList("indeterminateItem", "Americano");	 // "Americano" 값의 체크상태 변경
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- loadFromSelect -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">loadFromSelect</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_loadFromSelect"></div>
+						<input type="button" id="btnLoadFromSelect" value="LoadFromSelect" />
+						<select style="height: 25px; width: 200px;" id="mySelect">
+						    <option>Affogato</option>
+						    <option>Americano</option>
+						    <option>Bicerin</option>
+						    <option>Breve</option>
+						    <option>Café Bombón</option>
+						    <option>Caffé Corretto</option>
+						    <option>Café Crema</option>
+						    <option>Caffé Latte</option>
+						    <option>Caffé macchiato</option>
+						    <option>Café mélange</option>
+						    <option>Coffee milk</option>
+						    <option>Cafe mocha</option>
+						    <option>Cappuccino</option>
+						    <option>Carajillo</option>
+						    <option>Cuban espresso</option>
+						    <option>Espresso</option>
+						    <option>The Flat White</option>
+						    <option>Frappuccino</option>
+						    <option>Galao</option>
+						    <option>Greek frappé coffee</option>
+						    <option>Iced Coffee﻿</option>
+						    <option>Indian filter coffee</option>
+						    <option>Instant coffee</option>
+						    <option>Irish coffee</option>
+						    <option>Liqueur coffee</option>
+						</select>
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>select태그로부터 item들을 가져옵니다.</p>
+						<h4>Parameter Type</h4>
+						<p>select tag id - String</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 (html) */
+<xmp>
+<select style="height: 25px; width: 200px;" id="mySelect">
+    <option>Affogato</option>
+    <option>Americano</option>
+    <option>Bicerin</option>
+    <option>Breve</option>
+    <option>Café Bombón</option>
+    <option>Caffé Corretto</option>
+    <option>Café Crema</option>
+    <option>Caffé Latte</option>
+    <option>Caffé macchiato</option>
+    <option>Café mélange</option>
+    <option>Coffee milk</option>
+    <option>Cafe mocha</option>
+    <option>Cappuccino</option>
+    <option>Carajillo</option>
+    <option>Cuban espresso</option>
+    <option>Espresso</option>
+    <option>The Flat White</option>
+    <option>Frappuccino</option>
+    <option>Galao</option>
+    <option>Greek frappé coffee</option>
+    <option>Iced Coffee﻿</option>
+    <option>Indian filter coffee</option>
+    <option>Instant coffee</option>
+    <option>Irish coffee</option>
+    <option>Liqueur coffee</option>
+</select>
+</xmp>
+
+/* 초기설정 (js) */
+let template_methodLoadFromSelect = [{ 
+	"bind" : "ddlMethodLoadFromSelect",
+	"name" : "ddlMethodLoadFromSelect",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200
+}];
+
+$("#jqxForm_method_loadFromSelect").jqxForm({
+  	"template" : template_methodLoadFromSelect
+});
+
+
+let ddlMethodLoadFromSelect = 
+	$("#jqxForm_method_loadFromSelect").jqxForm("getComponentByName", "ddlMethodLoadFromSelect");
+ 
+/* 이벤트 설정 */
+$("#btnLoadFromSelect").on("click", function() {
+	ddlMethodLoadFromSelect.jqxDropDownList("loadFromSelect", "mySelect");	 // "mySelect" id인 select box로 부터 가져옴
+});
+
+/* 동기화 */
+let updating = false;
+
+$("#ddlMethodLoadFromSelect").on("select", function(event) {
+	let args = event.args;
+	
+	if(args && !updating) {
+		$("#mySelect").val(args.item.value);
+	}
+});
+
+$("#mySelect").on("change", function(event) {
+	updating = true;
+	
+	let index = $("#mySelect")[0].selectedIndex;
+	
+	ddlMethodLoadFromSelect.jqxDropDownList("selectIndex", index);
+	ddlMethodLoadFromSelect.jqxDropDownList("ensureVisible", index);
+	
+	updating = false;
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- open -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">open</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_open"></div>
+						<input type="button" id="btnOpen" value="Open" style="margin-left:250px;"/>
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>DropDownList popup을 엽니다.</p>
+						<h4>Parameter Type</h4>
+						<p>None</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodOpen = [{ 
+	"bind" : "ddlMethodOpen",
+	"name" : "ddlMethodOpen",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_open").jqxForm({
+  	"template" : template_methodOpen
+});
+
+
+let ddlMethodOpen= 
+	$("#jqxForm_method_open").jqxForm("getComponentByName", "ddlMethodOpen");
+ 
+/* 이벤트 설정 */
+$("#btnOpen").on("click", function() {
+	ddlMethodOpen.jqxDropDownList("open");	
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>      
+            <!-- removeItem -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">removeItem</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_removeItem"></div>
+						<input type="button" id="btnRemoveItem" value="RemoveItem"/>
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>DropDownList의 item을 제거합니다. 정상적으로 제거시 true를 반환합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>item - Object or String</p>
+						<h4>Return Value</h4>
+						<p>Boolean</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodRemoveItem = [{ 
+	"bind" : "ddlMethodRemoveItem",
+	"name" : "ddlMethodRemoveItem",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_removeItem").jqxForm({
+  	"template" : template_methodRemoveItem
+});
+
+
+let ddlMethodRemoveItem = 
+	$("#jqxForm_method_removeItem").jqxForm("getComponentByName", "ddlMethodRemoveItem");
+ 
+/* 이벤트 설정 */
+$("#btnRemoveItem").on("click", function() {
+	ddlMethodRemoveItem.jqxDropDownList("removeItem", "Americano");	// 값이 "Americano"인 내용 제거	
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- removeAt -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">removeAt</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_removeAt"></div>
+						<input type="button" id="btnRemoveAt" value="RemoveAt"/>
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>index에 해당하는 item을 제거합니다.(0-based) 정상적으로 제거시 true를 반환합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>item - Object or String</p>
+						<h4>Return Value</h4>
+						<p>Boolean</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodRemoveAt= [{ 
+	"bind" : "ddlMethodRemoveAt",
+	"name" : "ddlMethodRemoveAt",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_removeAt").jqxForm({
+  	"template" : template_methodRemoveAt
+});
+
+
+let ddlMethodRemoveAt = 
+	$("#jqxForm_method_removeAt").jqxForm("getComponentByName", "ddlMethodRemoveAt");
+ 
+/* 이벤트 설정 */
+$("#btnRemoveAt").on("click", function() {
+	ddlMethodRemoveAt.jqxDropDownList("removeAt", "2");	// 3번째 값 제거	
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- selectIndex -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">selectIndex</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_selectIndex"></div>
+						<input type="button" id="btnSelectIndex" value="SelectIndex"/>
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>index에 해당하는 item을 선택합니다.(0-based)</p>
+						<h4>Parameter Type</h4>
+						<p>index - Number</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodSelectIndex = [{ 
+	"bind" : "ddlMethodSelectIndex",
+	"name" : "ddlMethodSelectIndex",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_selectIndex").jqxForm({
+  	"template" : template_methodSelectIndex
+});
+
+
+let ddlMethodSelectIndex = 
+	$("#jqxForm_method_selectIndex").jqxForm("getComponentByName", "ddlMethodSelectIndex");
+ 
+/* 이벤트 설정 */
+$("#btnSelectIndex").on("click", function() {
+	ddlMethodSelectIndex.jqxDropDownList("selectIndex", "2");	// 3번째 값 선택	
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- selectItem -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">selectItem</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_selectItem"></div>
+						<input type="button" id="btnSelectItem" value="SelectItem"/>
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>parameter 해당하는 값을 갖는 item을 선택합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>item - Object or String</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodSelectItem = [{ 
+	"bind" : "ddlMethodSelectItem",
+	"name" : "ddlMethodSelectItem",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_selectItem").jqxForm({
+  	"template" : template_methodSelectItem
+});
+
+
+let ddlMethodSelectItem = 
+	$("#jqxForm_method_selectItem").jqxForm("getComponentByName", "ddlMethodSelectItem");
+ 
+/* 이벤트 설정 */
+$("#btnSelectItem").on("click", function() {
+	ddlMethodSelectItem.jqxDropDownList("selectItem", "Americano");	// "Americano" 값 선택	
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- setContent -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">setContent</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_setContent"></div>
+						<input type="button" id="btnSetContent" value="SetContent"/>
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>DropDownList의 내용을 설정합니다. (화면에 나타나는 내용)</p>
+						<h4>Parameter Type</h4>
+						<p>content - String</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodSetContent = [{ 
+	"bind" : "ddlMethodSetContent",
+	"name" : "ddlMethodSetContent",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_setContent").jqxForm({
+  	"template" : template_methodSetContent
+});
+
+
+let ddlMethodSetContent= 
+	$("#jqxForm_method_setContent").jqxForm("getComponentByName", "ddlMethodSetContent");
+ 
+/* 이벤트 설정 */
+$("#btnSetContent").on("click", function() {
+	ddlMethodSetContent.jqxDropDownList("setContent", "My Contents");	
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- updateItem -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">updateItem</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_updateItem"></div>
+						<input type="button" id="btnUpdateItem" value="UpdateItem" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>item을 갱신합니다. 정상 추가시 true를 반환합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>New item - Object or String</p>
+						<p>item - Object or String</p>
+						<p>item Object는 다음과 같은 field로 구성되어 있습니다.</p>
+						<p>> label - item의 label을 설정합니다.</p>
+						<p>> value - item의 값을 설정합니다.</p>
+						<p>> disabled - item의 disabled 여부를 설정합니다.</p>
+						<p>> checked - item의 checked 여부를 설정합니다.</p>
+						<p>> hasThreeStates - checkbox가 three states를 지원하는 여부를 설정합니다.</p>
+						<p>> html - 화면에 나타날 내용을 설정합니다. lable 대신에 사용될 수 있습니다.</p>
+						<p>> group - item의 group을 설정합니다.</p>
+						<h4>Return Value</h4>
+						<p>Boolean</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodUpdateItem = [{ 
+	"bind" : "ddlMethodUpdateItem",
+	"name" : "ddlMethodUpdateItem",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_updateItem").jqxForm({
+  	"template" : template_methodUpdateItem
+});
+
+
+let ddlMethodUpdateItem = $("#jqxForm_method_updateItem").jqxForm("getComponentByName", "ddlMethodUpdateItem");
+ 
+/* 이벤트 설정 */
+$("#btnUpdateItem").on("click", function() {
+	ddlMethodUpdateItem.jqxDropDownList("updateItem", "new Americano", "Americano");
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- updateAt -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">updateAt</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_updateAt"></div>
+						<input type="button" id="btnUpdateAt" value="UpdateAt" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 index의 item을 갱신합니다.(0-based) 정상 추가시 true를 반환합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>New item - Object or String</p>
+						<p>index - Number</p>
+						<p>item Object는 다음과 같은 field로 구성되어 있습니다.</p>
+						<p>> label - item의 label을 설정합니다.</p>
+						<p>> value - item의 값을 설정합니다.</p>
+						<p>> disabled - item의 disabled 여부를 설정합니다.</p>
+						<p>> checked - item의 checked 여부를 설정합니다.</p>
+						<p>> hasThreeStates - checkbox가 three states를 지원하는 여부를 설정합니다.</p>
+						<p>> html - 화면에 나타날 내용을 설정합니다. lable 대신에 사용될 수 있습니다.</p>
+						<p>> group - item의 group을 설정합니다.</p>
+						<h4>Return Value</h4>
+						<p>Boolean</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodUpdateAt = [{ 
+	"bind" : "ddlMethodUpdateAt",
+	"name" : "ddlMethodUpdateAt",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_updateAt").jqxForm({
+  	"template" : template_methodUpdateAt
+});
+
+
+let ddlMethodUpdateAt = $("#jqxForm_method_updateAt").jqxForm("getComponentByName", "ddlMethodUpdateAt");
+ 
+/* 이벤트 설정 */
+$("#btnUpdateAt").on("click", function() {
+	ddlMethodUpdateAt.jqxDropDownList("updateAt", "new Coffee", 2);	// 3번째 값 변경	
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- unselectIndex -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">unselectIndex</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_unselectIndex"></div>
+						<input type="button" id="btnUnselectIndex" value="UnselectIndex" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 index의 내용을 선택해제합니다.(0-based)</p>
+						<h4>Parameter Type</h4>
+						<p>index - Number</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodUnselectIndex = [{ 
+	"bind" : "ddlMethodUnselectIndex",
+	"name" : "ddlMethodUnselectIndex",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source,
+	"selectedIndex" : 2
+}];
+
+$("#jqxForm_method_unselectIndex").jqxForm({
+  	"template" : template_methodUnselectIndex
+});
+
+
+let ddlMethodUnselectIndex = $("#jqxForm_method_unselectIndex").jqxForm("getComponentByName", "ddlMethodUnselectIndex");
+ 
+/* 이벤트 설정 */
+$("#btnUnselectIndex").on("click", function() {
+	ddlMethodUnselectIndex.jqxDropDownList("unselectIndex", 2);	// 3번째 값 선택 해제	
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- unselectItem -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">unselectItem</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_unselectItem"></div>
+						<input type="button" id="btnUnselectItem" value="UnselectItem" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 item을 선택해제합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>item - Object or String</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodUnselectItem = [{ 
+	"bind" : "ddlMethodUnselectItem",
+	"name" : "ddlMethodUnselectItem",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source,
+	"selectedIndex" : 1
+}];
+
+$("#jqxForm_method_unselectItem").jqxForm({
+  	"template" : template_methodUnselectItem
+});
+
+
+let ddlMethodUnselectItem = $("#jqxForm_method_unselectItem").jqxForm("getComponentByName", "ddlMethodUnselectItem");
+ 
+/* 이벤트 설정 */
+$("#btnUnselectItem").on("click", function() {
+	ddlMethodUnselectItem.jqxDropDownList("unselectItem", "Americano");	
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- uncheckIndex -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">uncheckIndex</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_uncheckIndex"></div>
+						<input type="button" id="btnUncheckIndex" value="UncheckIndex" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 index의 item을 체크해제합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>index - Number</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodUncheckIndex = [{ 
+	"bind" : "ddlMethodUncheckIndex",
+	"name" : "ddlMethodUncheckIndex",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source,
+	"checkboxes" : true
+}];
+
+$("#jqxForm_method_uncheckIndex").jqxForm({
+  	"template" : template_methodUncheckIndex
+});
+
+
+let ddlMethodUncheckIndex = $("#jqxForm_method_uncheckIndex").jqxForm("getComponentByName", "ddlMethodUncheckIndex");
+ddlMethodUncheckIndex.jqxDropDownList("checkIndex", 0);	// 체크 설정
+ 
+/* 이벤트 설정 */
+$("#btnUncheckIndex").on("click", function() {
+	ddlMethodUncheckIndex.jqxDropDownList("uncheckIndex", 0);	// 체크 해제	
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- uncheckItem -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">uncheckItem</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_uncheckItem"></div>
+						<input type="button" id="btnUncheckItem" value="UncheckItem" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>해당 item을 체크해제합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>item - Object or String</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodUncheckItem = [{ 
+	"bind" : "ddlMethodUncheckItem",
+	"name" : "ddlMethodUncheckItem",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source,
+	"checkboxes" : true
+}];
+
+$("#jqxForm_method_uncheckItem").jqxForm({
+  	"template" : template_methodUncheckItem
+});
+
+
+let ddlMethodUncheckItem = $("#jqxForm_method_uncheckItem").jqxForm("getComponentByName", "ddlMethodUncheckItem");
+ddlMethodUncheckItem.jqxDropDownList("checkItem", "Americano");	// 체크 설정 
+ 
+/* 이벤트 설정 */
+$("#btnUncheckItem").on("click", function() {
+	ddlMethodUncheckItem.jqxDropDownList("uncheckItem", "Americano");	// 체크 해제	
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- uncheckAll -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">uncheckAll</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_uncheckAll"></div>
+						<input type="button" id="btnUncheckAll" value="UncheckAll" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>모든 item을 체크해제합니다.</p>
+						<h4>Parameter Type</h4>
+						<p>None</p>
+						<h4>Return Value</h4>
+						<p>None</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodUncheckAll = [{ 
+	"bind" : "ddlMethodUncheckAll",
+	"name" : "ddlMethodUncheckAll",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source,
+	"checkboxes" : true
+}];
+
+$("#jqxForm_method_uncheckAll").jqxForm({
+  	"template" : template_methodUncheckAll
+});
+
+
+let ddlMethodUncheckAll = $("#jqxForm_method_uncheckAll").jqxForm("getComponentByName", "ddlMethodUncheckAll");
+ddlMethodUncheckAll.jqxDropDownList("checkAll");	// 체크 설정 
+ 
+/* 이벤트 설정 */
+$("#btnUncheckAll").on("click", function() {
+	ddlMethodUncheckAll.jqxDropDownList("uncheckAll");	// 체크 해제	
+});
+</code></pre>
+                    </div>
+                </td>
+            </tr>
+            <!-- val -->
+			<tr>
+				<td class="documentation-option-type-click">
+					<span id="Span2">val</span>
+				</td>
+				<td>
+					<span>Method</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 100%">
+					<div class="documentation-option-description property-content" style="display: none;">
+						<!-- Demo -->
+						<h4>Demo</h4>
+						<div id="jqxForm_method_val"></div>
+						<input type="button" id="btnVal" value="Val" />
+						<!-- Description -->
+						<h4>Description</h4>
+						<p>값을 선택하거나 가져옵니다.</p>
+						<h4>Parameter Type</h4>
+						<p>String</p>
+						<h4>Return Value</h4>
+						<p>String</p>
+						<h4>Code Example</h4>
+<pre><code>
+/* 초기설정 */
+let source = [
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Affogato",
+	"Americano",
+	"Bicerin",
+	"Breve",
+	"Café Bombón",
+	"Café au lait"
+];
+
+let template_methodVal = [{ 
+	"bind" : "ddlMethodVal",
+	"name" : "ddlMethodVal",
+	"type" : "option",
+	"component" : "jqxDropDownList",
+	"width" : 200,
+	"options" : source
+}];
+
+$("#jqxForm_method_val").jqxForm({
+  	"template" : template_methodVal
+});
+
+
+let ddlMethodVal = $("#jqxForm_method_val").jqxForm("getComponentByName", "ddlMethodVal"); 
+ 
+/* 이벤트 설정 */
+$("#btnVal").on("click", function() {
+	// Set value 
+	ddlMethodVal.jqxDropDownList("val", "new Value");
+	
+	// Set value using jQuery
+	ddlMethodVal.val("new Value2");
+	
+	// Get value
+	let val1 = ddlMethodVal.jqxDropDownList("val");
+	
+	let val2 = ddlMethodVal.val();
+	
+	alert(val1 + "//" + val2);
 });
 </code></pre>
                     </div>
